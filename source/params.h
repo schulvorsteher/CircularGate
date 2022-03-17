@@ -6,8 +6,6 @@ enum
 	kPwId = 101,
 	kSwitchId = 102,
 	kSequenceId = 103,
-	kVuLId = 104,
-	kVuRId = 105,
 	kClockId = 106,
 	kCurrSegmentId = 107,
 	kSpeedId = 108

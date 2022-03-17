@@ -46,17 +46,12 @@ tresult PLUGIN_API CircularGateController::initialize (FUnknown* context)
 	// THE Sequence
 	parameters.addParameter(STR16("SEQUENCE1"), STR16("Sequence"), 0,  0, Vst::ParameterInfo::kCanAutomate, kSequenceId);
 
-	//---VuMeter parameter---
 	int32 stepCount = 0;
 	Vst::ParamValue defaultVal = 0;
 	int32 flags = Vst::ParameterInfo::kIsReadOnly;
-	int32 tag = kVuLId;
-	int32 tag2 = kVuRId;
-	parameters.addParameter(STR16("VuPPM"), nullptr, stepCount, defaultVal, flags, tag);
-	parameters.addParameter(STR16("VuPPM"), nullptr, stepCount, defaultVal, flags, tag2);
 	
 	// Segment OUT parameter
-	tag = kClockId;
+	int32 tag = kClockId;
 	parameters.addParameter(STR16("ClockMessage"), nullptr, stepCount, defaultVal, flags, tag);
 	
 	// current segment OUT parameter

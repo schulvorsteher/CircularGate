@@ -56,9 +56,6 @@ public:
 
 //------------------------------------------------------------------------
 protected:
-	// --------- VU ------
-	float fVuLOld;
-	float fVuROld;
 	// --------- nof Segments out param
 	float fClockMessageOld = 0;
 	float clockMessage = 0;

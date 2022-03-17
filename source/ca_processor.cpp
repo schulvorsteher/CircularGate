@@ -66,8 +66,6 @@ tresult PLUGIN_API CircularGateProcessor::initialize (FUnknown* context)
 
 	allSamples = 0;
 	bBypass = false;
-	fVuLOld = 0;
-	fVuROld = 0;
 	fCurrSegmentOld = 0;
 	fBarInfo = 0; 
 
@@ -353,8 +351,8 @@ tresult PLUGIN_API CircularGateProcessor::process (Vst::ProcessData& data)
 
 			// waveform
 			int waveform = Sequence::waveform_sine;
-			if (fSwitch < 0.5f) waveform = Sequence::waveform_saw;
-			else if (fSwitch < 1.0f)waveform = Sequence::waveform_square;
+			if (fSwitch == 1.f) waveform = Sequence::waveform_saw;
+			else if (fSwitch == .5f)waveform = Sequence::waveform_square;
 
 			float y = Sequence::getValue(allSamples, framesPerBeat, waveform, fPw, vSequence, fSpeedDenormalized, reset_sequence, /*out*/ displayed_segment);
 			reset_sequence = false;
@@ -394,16 +392,6 @@ tresult PLUGIN_API CircularGateProcessor::process (Vst::ProcessData& data)
 			}
 			allSamples++;
 		
-			// VU: check only positive values
-			if (ch == 0 && tmp > fVuL)
-			{
-				fVuL = tmp;
-			}
-			if (ch == 1 && tmp > fVuR)
-			{
-				fVuR = tmp;
-			}
-
 			*pOut = tmp;
 			pIn++;
 			pOut++;
@@ -411,32 +399,6 @@ tresult PLUGIN_API CircularGateProcessor::process (Vst::ProcessData& data)
 
 
 	}
-
-	// a new value of VuMeter will be send to the host
-	// (the host will send it back in sync to our controller for updating our editor)
-	if (outParamChanges && fVuLOld != fVuL)
-	{
-		int32 index = 0;
-		Steinberg::Vst::IParamValueQueue* paramQueue = outParamChanges->addParameterData(kVuLId, index);
-		if (paramQueue)
-		{
-			int32 index2 = 0;
-			paramQueue->addPoint(0, fVuL, index2);
-		}
-	}
-	fVuLOld = fVuL;
-
-	if (outParamChanges && fVuROld != fVuR)
-	{
-		int32 index = 0;
-		Steinberg::Vst::IParamValueQueue* paramQueue = outParamChanges->addParameterData(kVuRId, index);
-		if (paramQueue)
-		{
-			int32 index2 = 0;
-			paramQueue->addPoint(0, fVuR, index2);
-		}
-	}
-	fVuROld = fVuR;
 
 
 	if (outParamChanges && fCurrSegment != fCurrSegmentOld)
