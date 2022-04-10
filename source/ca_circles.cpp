@@ -5,6 +5,8 @@
 #include "pluginterfaces/vst/ivsteditcontroller.h"
 #include "vstgui/vstgui_uidescription.h"
 //#include "vstgui/uidescription/detail/uiviewcreatorattributes.h"
+#include <iostream>
+#include <cstdio>
 
 
 using namespace VSTGUI;
@@ -104,10 +106,10 @@ namespace csse {
 	//------------------------------------------------------------------------
 	void CCirclesKnob::draw(CDrawContext* pContext)
 	{
-		CControl* segControl = findControlForTag(getParentView()->asViewContainer(), 100, false);
+		CControl* segControl = findControlForTag(getParentView()->asViewContainer(), kSegsId, false);
 		if (segControl == nullptr)
 		{
-			segControl = findControlForTag(getFrame(), 100, true);
+			segControl = findControlForTag(getFrame(), kSegsId, true);
 		}
 		if (segControl)
 		{
@@ -191,7 +193,7 @@ namespace csse {
 			CGraphicsPath* drawPath = context->createGraphicsPath();
 			drawPath->addEllipse(rect);// .extend(CPoint(5, 5)));
 
-			CColor c1(00, 00, 00, 0);
+			CColor c1(100, 100, 00, 100);
 			CColor c2(250, 250, 0, 155);
 
 			CGradient* gradient = drawPath->createGradient(0.5, 1.0, c1, c2);
@@ -418,7 +420,7 @@ namespace csse {
 	int CCirclesKnob::getSegs()
 	{
 		if (segs < 4) segs = 4;
-		if (segs > 16) segs = 15;
+		if (segs > 32) segs = 32;
 		return segs;
 	}
 

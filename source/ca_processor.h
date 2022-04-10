@@ -67,10 +67,10 @@ protected:
 	int iSegsOld = 0;
 	float fSegsOld = 0;
 	float fPw = default_pw;
-	float fSwitch = 0;
-	float fSequence = 0;
+	float fWaveform = 0;
+	double fSequence = 0;
 	int iSequence = 0;
-	float fSequenceOld = 0;
+	double fSequenceOld = 0;
 	float fSpeed = 0;
 	float fSpeedOld = 0;
 	int alternator;
@@ -82,13 +82,14 @@ protected:
 	long framesPerBeat;
 	double samplerate;
 	float fBarInfo;
+	bool mBypass;
 
 	int displayed_segment_old = -1;
 
 	bool reset_sequence;
 
 	int allSamples;
-	bool bBypass;
+
 	std::vector<int> vSequence;
 };
 

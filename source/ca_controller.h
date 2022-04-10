@@ -6,7 +6,6 @@
 
 #include "public.sdk/source/vst/vsteditcontroller.h"
 #include "mdaParameter.h"
-#include "circle.h"
 #include "vstgui/plugin-bindings/vst3editor.h"
 
 

@@ -33,19 +33,23 @@ tresult PLUGIN_API CircularGateController::initialize (FUnknown* context)
 		return result;
 	}
 
-	// Here you could register some parameters
+	// ////////////////// IN Parameters ///////////////////////////////
 	setKnobMode(Vst::kLinearMode);
 
-	parameters.addParameter(new Vst::mda::ScaledParameter (STR16("SEGS"), STR16("Segments"), 48, default_segs, Vst::ParameterInfo::kCanAutomate, kSegsId,4, 16, true));
-	
-	parameters.addParameter(new Vst::mda::ScaledParameter(STR16("PW1"), STR16("%"), 100, default_pw, Vst::ParameterInfo::kCanAutomate, kPwId, 0, 100, true));
-	
-	// Wave switch
-	parameters.addParameter(new Vst::mda::ScaledParameter (STR16("SWITCH1"), STR16("Wave"), 2, 0, Vst::ParameterInfo::kCanAutomate, kSwitchId, 0,2, true));;
+	parameters.addParameter(
+		new Vst::mda::ScaledParameter (
+			STR16("Segments"), STR16("Segments"), 48, default_segs, Vst::ParameterInfo::kCanAutomate, kSegsId,4, 32, true));
+
 	
 	// THE Sequence
-	parameters.addParameter(STR16("SEQUENCE1"), STR16("Sequence"), 0,  0, Vst::ParameterInfo::kCanAutomate, kSequenceId);
+	parameters.addParameter(
+		STR16("Sequence"), STR16("Sequence"), 0,  0, Vst::ParameterInfo::kCanAutomate, kSequenceId);
 
+	// Bypass parameter
+	parameters.addParameter(
+		STR16("Bypass"), nullptr, 1, 0, Vst::ParameterInfo::kCanAutomate | Vst::ParameterInfo::kIsBypass, kBypassId);
+
+	////////////////////////// OUT parameters ////////////////////////
 	int32 stepCount = 0;
 	Vst::ParamValue defaultVal = 0;
 	int32 flags = Vst::ParameterInfo::kIsReadOnly;
@@ -82,22 +86,24 @@ tresult PLUGIN_API CircularGateController::setComponentState (IBStream* state)
 
 	IBStreamer streamer(state, kLittleEndian);
 
+
 	float fval;
 	if (streamer.readFloat(fval) == false)
 		return kResultFalse;
 	setParamNormalized(kSegsId, fval);
 	if (streamer.readFloat(fval) == false)
 		return kResultFalse;
-	setParamNormalized(kPwId, fval);
-	if (streamer.readFloat(fval) == false)
-		return kResultFalse;
-	setParamNormalized(kSwitchId, fval);
-	if (streamer.readFloat(fval) == false)
-		return kResultFalse;
 	setParamNormalized(kSequenceId, fval);
 	if (streamer.readFloat(fval) == false)
 		return kResultFalse;
 	setParamNormalized(kSpeedId, fval);
+
+	int32 bypassState = 0;
+	if (streamer.readInt32(bypassState) == false)
+	{
+		// could be an old version, continue
+	}
+	setParamNormalized(kBypassId, bypassState ? 1 : 0);
 
 	return kResultOk;
 }
@@ -180,46 +186,6 @@ tresult PLUGIN_API CircularGateController::notify(Vst::IMessage* message) {
 	}
 	return EditControllerEx1::notify(message);
 }
-
-//tresult PLUGIN_API  CircularGateController::notify(Steinberg::Vst::IMessage* message)
-//{
-//	if (!message)
-//		return false;
-//
-//	if (!strcmp(message->getMessageID(), "BinaryMessage"))
-//	{
-//		double clockMessage;
-//		if (message->getAttributes()->getFloat("MyData", clockMessage) == kResultOk)
-//		{
-//			for (int32 paramIdx = 0; paramIdx < getParameterCount(); ++paramIdx)
-//			{
-//				Steinberg::Vst::Parameter* parameter = parameters.getParameterByIndex(paramIdx);
-//				Steinberg::Vst::ParameterInfo info = parameter->getInfo();
-//				Steinberg::Vst::ParamID id = info.id;
-//				if (id == kSequenceId)
-//				{
-//					//beginEdit(103);
-//					
-//					//getViewFactory();
-//
-//					CControl* segControl = CCirclesKnob::findControlForTag(getViewController()->getasViewContainer(), 100, false);
-//					if (segControl == nullptr)
-//					{
-//						segControl = CCirclesKnob::findControlForTag(getFrame(), 100, true);
-//					}
-//					if (segControl)
-//					{
-//					}
-//
-//
-//				}
-//			}
-//			return kResultOk;
-//		}
-//	}
-//	return kResultFalse;
-//
-//}
 
 //------------------------------------------------------------------------
 } // namespace csse

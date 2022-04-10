@@ -23,8 +23,6 @@ public:
 	static float getValue(
 		int currSample, 
 		int framesPerBeat, 
-		int wave, 
-		float pulsewidth, 
 		std::vector<int> vSequence, 
 		float fSpeed, 
 		bool reset_sequence, 

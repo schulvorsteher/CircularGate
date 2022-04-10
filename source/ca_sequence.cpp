@@ -20,8 +20,6 @@ namespace csse {
 	float Sequence::getValue(
 		int currSample, 
 		int framesPerBeat, 
-		int wave, 
-		float pulsewidth, 
 		std::vector<int> vSequence, 
 		float fSpeed, 
 		bool reset_sequence, 
@@ -53,32 +51,7 @@ namespace csse {
 				x = (float)delta / framesPerBeat;
 			}
 
-			switch (wave)
-			{
-			case waveform_sine:  // sine
-				// 6.28  -> 360°  -> PI2
-				// 3.14  -> 180°
-				// 1.57  -> 90°
-
-				// 0 < output < 1 
-				y = sin(x * VSTGUI::Constants::double_pi) / 2.f + 0.5f;
-				break;
-			case waveform_square: //square
-				if (x < pulsewidth)
-					y = 1;
-				else
-					y = 0;
-				break;
-			case waveform_saw: //triangle
-				if (x < pulsewidth)
-					y = x / pulsewidth;
-				else
-					y = 1.f - ((x - pulsewidth) / (1.f - pulsewidth));
-				break;
-			default:
-				break;
-			}
-
+			y = 1;
 			//std::cout << "iSpeed:" << iSpeed << " x*speed:" << x * iSpeed << std::endl;
 
 			int iSegs = vSequence.size();
@@ -99,8 +72,8 @@ namespace csse {
 
 	int Sequence::denormalizeSegments(float segs)
 	{
-		return std::min(16, 4 + (int)((segs * (12 + 1))));
-		//return std::min(16, 4 + (int)round(segs * 12 ));
+		//return std::min(16, 4 + (int)((segs * (12 + 1))));
+		return std::min(32, 4 + (int)((segs * (28 + 1))));
 	}
 
 	//int Sequence::denormalizeSequence(float sequence, int segs)

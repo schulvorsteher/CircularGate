@@ -2,26 +2,35 @@
 	"vstgui-ui-description": {
 		"version": "1",
 		"bitmaps": {
-			"VUMeter01": {
-				"path": "D:\\myvst\\CircularGate\\resource\\VUMeter01.png"
+			"Down5": {
+				"path": "d:\\myvst\\CircularGate\\resource\\Down5.png"
 			},
-			"chickenhead4": {
-				"path": "D:\\myvst\\CircularGate\\resource\\chickenhead4.png"
+			"DownOff2": {
+				"path": "d:\\myvst\\CircularGate\\resource\\DownOff2.png"
+			},
+			"Off1": {
+				"path": "d:\\myvst\\CircularGate\\resource\\Off1.png"
+			},
+			"On1": {
+				"path": "d:\\myvst\\CircularGate\\resource\\On1.png"
+			},
+			"Up5": {
+				"path": "d:\\myvst\\CircularGate\\resource\\Up5.png"
+			},
+			"UpOff2": {
+				"path": "d:\\myvst\\CircularGate\\resource\\UpOff2.png"
 			},
 			"knob_black": {
-				"path": "D:\\myvst\\CircularGate\\resource\\knob_black.png"
+				"path": "d:\\myvst\\CircularGate\\resource\\knob_black.png"
 			},
-			"knob_black_small": {
-				"path": "D:\\myvst\\CircularGate\\resource\\knob_black_small.png"
+			"onoff1": {
+				"path": "d:\\myvst\\CircularGate\\resource\\onoff1.png"
+			},
+			"onoff2": {
+				"path": "d:\\myvst\\CircularGate\\resource\\onoff2.png"
 			},
 			"panel": {
-				"path": "D:\\myvst\\CircularGate\\resource\\panel.png"
-			},
-			"vu_off": {
-				"path": "D:\\myvst\\CircularGate\\resource\\vu_off.png"
-			},
-			"vu_on": {
-				"path": "D:\\myvst\\CircularGate\\resource\\vu_on.png"
+				"path": "d:\\myvst\\CircularGate\\resource\\panel.png"
 			}
 		},
 		"fonts": {
@@ -31,9 +40,32 @@
 			}
 		},
 		"colors": {
+			"lightgreen": "#96fa96ff",
+			"lightgrey": "#c3c3c3ff",
+			"lightred": "#fa9696ff",
 			"panelColor": "#333342ff"
 		},
 		"gradients": {
+			"Default TextButton Gradient": [
+				{
+					"rgba": "#dcdcdcff",
+					"start": "0"
+				},
+				{
+					"rgba": "#b4b4b4ff",
+					"start": "1"
+				}
+			],
+			"Default TextButton Gradient Highlighted": [
+				{
+					"rgba": "#b4b4b4ff",
+					"start": "0"
+				},
+				{
+					"rgba": "#646464ff",
+					"start": "1"
+				}
+			],
 			"blueGrad": [
 				{
 					"rgba": "#15cbffc6",
@@ -42,6 +74,16 @@
 				{
 					"rgba": "#2487ffff",
 					"start": "0.9747368421052633458145919576054438948631"
+				}
+			],
+			"greenGrad": [
+				{
+					"rgba": "#96fa96ff",
+					"start": "0"
+				},
+				{
+					"rgba": "#00ff00ff",
+					"start": "1"
 				}
 			],
 			"segbutton": [
@@ -66,18 +108,19 @@
 			]
 		},
 		"control-tags": {
-			"CURR_SEGMENT": "107",
-			"PW1": "101",
-			"SEGS1": "100",
-			"SEGS2": "106",
-			"SEQUENCE1": "103",
-			"SPEED": "108",
-			"SWITCH1": "102"
+			"Bypass": "99",
+			"Clock": "105",
+			"CurrSegment": "106",
+			"Segments": "101",
+			"SegmentsDown": "103",
+			"SegmentsUp": "102",
+			"Sequence": "104",
+			"Speed": "100"
 		},
 		"custom": {
 			"FocusDrawing": {},
 			"VST3Editor": {
-				"Path": "D:\\myvst\\CircularGate\\resource\\ca_editor.uidesc"
+				"Path": "d:\\myvst\\CircularGate\\resource\\ca_editor.uidesc"
 			},
 			"UIGridController": {
 				"Grids": "1x 1,5x 5,10x 10,12x 12,15x 15"
@@ -87,34 +130,34 @@
 			},
 			"UIEditController": {
 				"EditViewScale": "1",
-				"EditorSize": "0, 0, 1212, 732.8",
-				"SplitViewSize_0_0": "0.5673457838143747267167782410979270935059",
-				"SplitViewSize_0_1": "0.4032258064516129336674055139155825600028",
-				"SplitViewSize_1_0": "0.5432937181663837211686995942727662622929",
-				"SplitViewSize_1_1": "0.4485002829654782252610800696857040748",
-				"SplitViewSize_2_0": "0.721947194719471996293691518076229840517",
-				"SplitViewSize_2_1": "0.2739273927392739116370989904680754989386",
-				"TabSwitchValue": "0",
+				"EditorSize": "0, 0, 1208, 686.4",
+				"SplitViewSize_0_0": "0.5375529981829194614562084097997285425663",
+				"SplitViewSize_0_1": "0.4315566323440339080441674468602286651731",
+				"SplitViewSize_1_0": "0.6253785584494245819442426181922201067209",
+				"SplitViewSize_1_1": "0.3649303452453058760340809385525062680244",
+				"SplitViewSize_2_0": "0.7210264900662252118834771863475907593966",
+				"SplitViewSize_2_1": "0.2748344370860927310395993572456063702703",
+				"TabSwitchValue": "1",
 				"Version": "1"
 			},
 			"UIAttributesController": {},
 			"UIViewCreatorDataSource": {
-				"SelectedRow": "22"
+				"SelectedRow": "26"
 			},
 			"UIBitmapsDataSource": {
-				"SelectedRow": "3"
+				"SelectedRow": "9"
 			},
 			"UITagsDataSource": {
-				"SelectedRow": "6"
+				"SelectedRow": "5"
 			},
 			"UIFontsDataSource": {
 				"SelectedRow": "-1"
 			},
 			"UIColorsDataSource": {
-				"SelectedRow": "0"
+				"SelectedRow": "3"
 			},
 			"UIGradientsDataSource": {
-				"SelectedRow": "2"
+				"SelectedRow": "3"
 			}
 		},
 		"templates": {
@@ -133,31 +176,6 @@
 					"wants-focus": "false"
 				},
 				"children": {
-					"CAnimKnob": {
-						"attributes": {
-							"angle-range": "270",
-							"angle-start": "135",
-							"bitmap": "knob_black",
-							"class": "CAnimKnob",
-							"control-tag": "SEGS1",
-							"default-value": "10",
-							"height-of-one-image": "100",
-							"inverse-bitmap": "false",
-							"max-value": "16",
-							"min-value": "4",
-							"mouse-enabled": "true",
-							"opacity": "1",
-							"origin": "420, 160",
-							"size": "100, 100",
-							"sub-pixmaps": "100",
-							"transparent": "false",
-							"uidesc-label": "Sequenz",
-							"value-inset": "0",
-							"wants-focus": "false",
-							"wheel-inc-value": "0.1",
-							"zoom-factor": "1.5"
-						}
-					},
 					"CTextLabel": {
 						"attributes": {
 							"back-color": "~ BlackCColor",
@@ -173,7 +191,7 @@
 							"min-value": "0",
 							"mouse-enabled": "true",
 							"opacity": "1",
-							"origin": "390, 140",
+							"origin": "380, 10",
 							"round-rect-radius": "6",
 							"shadow-color": "~ BlackCColor",
 							"size": "80, 20",
@@ -200,18 +218,18 @@
 							"back-color": "~ BlackCColor",
 							"background-offset": "0, 0",
 							"class": "CParamDisplay",
-							"control-tag": "SEGS1",
-							"default-value": "10",
+							"control-tag": "Segments",
+							"default-value": "18",
 							"font": "~ NormalFontBig",
 							"font-antialias": "true",
-							"font-color": "~ GreyCColor",
+							"font-color": "lightgreen",
 							"frame-color": "~ GreyCColor",
 							"frame-width": "1",
-							"max-value": "16",
+							"max-value": "32",
 							"min-value": "4",
 							"mouse-enabled": "true",
 							"opacity": "1",
-							"origin": "470, 140",
+							"origin": "460, 10",
 							"round-rect-radius": "6",
 							"shadow-color": "~ BlackCColor",
 							"size": "60, 20",
@@ -232,141 +250,6 @@
 							"wheel-inc-value": "1"
 						}
 					},
-					"CAnimKnob": {
-						"attributes": {
-							"angle-range": "270",
-							"angle-start": "135",
-							"bitmap": "knob_black",
-							"class": "CAnimKnob",
-							"control-tag": "PW1",
-							"default-value": "50",
-							"height-of-one-image": "100",
-							"inverse-bitmap": "false",
-							"max-value": "100",
-							"min-value": "0",
-							"mouse-enabled": "true",
-							"opacity": "1",
-							"origin": "420, 30",
-							"size": "100, 100",
-							"sub-pixmaps": "100",
-							"transparent": "false",
-							"value-inset": "0",
-							"wants-focus": "false",
-							"wheel-inc-value": "1",
-							"zoom-factor": "1.5"
-						}
-					},
-					"CTextLabel": {
-						"attributes": {
-							"back-color": "~ BlackCColor",
-							"background-offset": "0, 0",
-							"class": "CTextLabel",
-							"default-value": "0.5",
-							"font": "~ NormalFont",
-							"font-antialias": "true",
-							"font-color": "~ GreyCColor",
-							"frame-color": "~ GreyCColor",
-							"frame-width": "1",
-							"max-value": "1",
-							"min-value": "0",
-							"mouse-enabled": "true",
-							"opacity": "1",
-							"origin": "390, 10",
-							"round-rect-radius": "16",
-							"shadow-color": "~ BlackCColor",
-							"size": "80, 20",
-							"style-3D-in": "true",
-							"style-3D-out": "false",
-							"style-no-draw": "false",
-							"style-no-frame": "true",
-							"style-no-text": "false",
-							"style-round-rect": "true",
-							"style-shadow-text": "true",
-							"text-alignment": "center",
-							"text-inset": "1, 1",
-							"text-rotation": "0",
-							"text-shadow-offset": "1, 1",
-							"title": "Pulsewidth %",
-							"transparent": "true",
-							"value-precision": "2",
-							"wants-focus": "false",
-							"wheel-inc-value": "0.1"
-						}
-					},
-					"CParamDisplay": {
-						"attributes": {
-							"back-color": "~ BlackCColor",
-							"background-offset": "0, 0",
-							"class": "CParamDisplay",
-							"control-tag": "PW1",
-							"default-value": "50",
-							"font": "~ NormalFontBig",
-							"font-antialias": "true",
-							"font-color": "~ GreyCColor",
-							"frame-color": "~ GreyCColor",
-							"frame-width": "1",
-							"max-value": "100",
-							"min-value": "0",
-							"mouse-enabled": "true",
-							"opacity": "1",
-							"origin": "470, 10",
-							"round-rect-radius": "6",
-							"shadow-color": "~ BlackCColor",
-							"size": "60, 20",
-							"style-3D-in": "true",
-							"style-3D-out": "false",
-							"style-no-draw": "false",
-							"style-no-frame": "true",
-							"style-no-text": "false",
-							"style-round-rect": "true",
-							"style-shadow-text": "true",
-							"text-alignment": "center",
-							"text-inset": "0, 0",
-							"text-rotation": "0",
-							"text-shadow-offset": "1, 1",
-							"transparent": "true",
-							"value-precision": "1",
-							"wants-focus": "false",
-							"wheel-inc-value": "1"
-						}
-					},
-					"CTextLabel": {
-						"attributes": {
-							"back-color": "~ BlackCColor",
-							"background-offset": "0, 0",
-							"class": "CTextLabel",
-							"default-value": "0.5",
-							"font": "~ NormalFont",
-							"font-antialias": "true",
-							"font-color": "~ GreyCColor",
-							"frame-color": "~ GreyCColor",
-							"frame-width": "1",
-							"max-value": "1",
-							"min-value": "0",
-							"mouse-enabled": "true",
-							"opacity": "1",
-							"origin": "620, 10",
-							"round-rect-radius": "6",
-							"shadow-color": "~ BlackCColor",
-							"size": "60, 20",
-							"style-3D-in": "true",
-							"style-3D-out": "false",
-							"style-no-draw": "false",
-							"style-no-frame": "true",
-							"style-no-text": "false",
-							"style-round-rect": "true",
-							"style-shadow-text": "true",
-							"text-alignment": "center",
-							"text-inset": "0, 0",
-							"text-rotation": "0",
-							"text-shadow-offset": "1, 1",
-							"title": "Waveform",
-							"transparent": "true",
-							"value-precision": "2",
-							"wants-focus": "false",
-							"wheel-inc-value": "0.1"
-						}
-					},
 					"CViewContainer": {
 						"attributes": {
 							"background-color": "~ BlackCColor",
@@ -383,7 +266,7 @@
 							"CCirclesKnob": {
 								"attributes": {
 									"class": "CCirclesKnob",
-									"control-tag": "SEQUENCE1",
+									"control-tag": "Sequence",
 									"default-value": "0",
 									"max-value": "1",
 									"min-value": "0",
@@ -401,7 +284,7 @@
 									"back-color": "~ BlackCColor",
 									"background-offset": "0, 0",
 									"class": "CParamDisplay",
-									"control-tag": "SEGS2",
+									"control-tag": "Clock",
 									"default-value": "0",
 									"font": "~ NormalFont",
 									"font-antialias": "true",
@@ -437,7 +320,7 @@
 							"CCirclesKnob": {
 								"attributes": {
 									"class": "CCirclesKnob",
-									"control-tag": "CURR_SEGMENT",
+									"control-tag": "CurrSegment",
 									"default-value": "0",
 									"max-value": "1",
 									"min-value": "0",
@@ -465,7 +348,7 @@
 									"min-value": "0",
 									"mouse-enabled": "true",
 									"opacity": "1",
-									"origin": "90, 100",
+									"origin": "580, 30",
 									"round-rect-radius": "6",
 									"shadow-color": "~ RedCColor",
 									"size": "60, 20",
@@ -491,14 +374,12 @@
 					},
 					"CSegmentButton": {
 						"attributes": {
-							"bitmap": "knob_black_small",
 							"class": "CSegmentButton",
-							"control-tag": "SPEED",
+							"control-tag": "Speed",
 							"default-value": "0",
-							"disabled-bitmap": "knob_black",
 							"font": "~ NormalFontBig",
-							"frame-color": "~ BlackCColor",
-							"frame-width": "1",
+							"frame-color": "None",
+							"frame-width": "0",
 							"gradient": "segbutton",
 							"gradient-highlighted": "segbutton2",
 							"icon-text-margin": "0",
@@ -506,15 +387,15 @@
 							"min-value": "0",
 							"mouse-enabled": "true",
 							"opacity": "1",
-							"origin": "70, 40",
+							"origin": "80, 40",
 							"round-radius": "5",
 							"segment-names": "8,4,2,1,1/2,1/4,1/8,1/16,1/32",
 							"selection-mode": "Single",
 							"size": "60, 200",
 							"style": "vertical",
 							"text-alignment": "center",
-							"text-color": "~ WhiteCColor",
-							"text-color-highlighted": "~ YellowCColor",
+							"text-color": "lightgrey",
+							"text-color-highlighted": "lightgreen",
 							"transparent": "false",
 							"wants-focus": "true",
 							"wheel-inc-value": "0.1"
@@ -535,7 +416,7 @@
 							"min-value": "0",
 							"mouse-enabled": "true",
 							"opacity": "1",
-							"origin": "70, 10",
+							"origin": "80, 10",
 							"round-rect-radius": "16",
 							"shadow-color": "~ BlackCColor",
 							"size": "60, 20",
@@ -557,30 +438,183 @@
 							"wheel-inc-value": "0.1"
 						}
 					},
-					"CSegmentButton": {
+					"CViewContainer": {
 						"attributes": {
-							"class": "CSegmentButton",
-							"control-tag": "SWITCH1",
-							"default-value": "0",
-							"font": "~ NormalFontBig",
-							"frame-color": "~ BlackCColor",
+							"background-color": "None",
+							"background-color-draw-style": "filled and stroked",
+							"bitmap": "panel",
+							"class": "CViewContainer",
+							"mouse-enabled": "true",
+							"opacity": "1",
+							"origin": "420, 70",
+							"size": "60, 100",
+							"transparent": "false",
+							"wants-focus": "false"
+						},
+						"children": {
+							"CTextButton": {
+								"attributes": {
+									"class": "CTextButton",
+									"control-tag": "SegmentsDown",
+									"default-value": "0",
+									"font": "~ SystemFont",
+									"frame-color": "~ BlackCColor",
+									"frame-color-highlighted": "~ BlackCColor",
+									"frame-width": "1",
+									"gradient": "None",
+									"gradient-highlighted": "None",
+									"icon": "DownOff2",
+									"icon-highlighted": "Down5",
+									"icon-position": "center above text",
+									"icon-text-margin": "0",
+									"kick-style": "true",
+									"max-value": "1",
+									"min-value": "0",
+									"mouse-enabled": "true",
+									"opacity": "1",
+									"origin": "10, 60",
+									"round-radius": "6",
+									"size": "40, 30",
+									"text-alignment": "center",
+									"text-color": "~ BlackCColor",
+									"text-color-highlighted": "~ WhiteCColor",
+									"transparent": "false",
+									"wants-focus": "true",
+									"wheel-inc-value": "0.1"
+								}
+							},
+							"CParamDisplay": {
+								"attributes": {
+									"back-color": "~ TransparentCColor",
+									"background-offset": "0, 0",
+									"class": "CParamDisplay",
+									"control-tag": "Segments",
+									"default-value": "18",
+									"font": "~ NormalFontBig",
+									"font-antialias": "true",
+									"font-color": "lightgreen",
+									"frame-color": "~ BlackCColor",
+									"frame-width": "0",
+									"max-value": "32",
+									"min-value": "4",
+									"mouse-enabled": "true",
+									"opacity": "1",
+									"origin": "10, 40",
+									"round-rect-radius": "6",
+									"shadow-color": "~ BlackCColor",
+									"size": "40, 20",
+									"style-3D-in": "false",
+									"style-3D-out": "false",
+									"style-no-draw": "false",
+									"style-no-frame": "false",
+									"style-no-text": "false",
+									"style-round-rect": "false",
+									"style-shadow-text": "false",
+									"text-alignment": "center",
+									"text-inset": "0, 0",
+									"text-rotation": "0",
+									"text-shadow-offset": "1, 1",
+									"transparent": "false",
+									"value-precision": "0",
+									"wants-focus": "false",
+									"wheel-inc-value": "0.1"
+								}
+							},
+							"CTextButton": {
+								"attributes": {
+									"class": "CTextButton",
+									"control-tag": "SegmentsUp",
+									"default-value": "0",
+									"font": "~ SystemFont",
+									"frame-color": "~ YellowCColor",
+									"frame-color-highlighted": "~ MagentaCColor",
+									"frame-width": "2",
+									"gradient": "None",
+									"gradient-highlighted": "None",
+									"icon": "UpOff2",
+									"icon-highlighted": "Up5",
+									"icon-position": "center above text",
+									"icon-text-margin": "0",
+									"kick-style": "true",
+									"max-value": "1",
+									"min-value": "0",
+									"mouse-enabled": "true",
+									"opacity": "1",
+									"origin": "10, 10",
+									"round-radius": "6",
+									"size": "40, 30",
+									"text-alignment": "center",
+									"text-color": "~ BlackCColor",
+									"text-color-highlighted": "~ WhiteCColor",
+									"transparent": "false",
+									"wants-focus": "true",
+									"wheel-inc-value": "0.1"
+								}
+							}
+						}
+					},
+					"CTextLabel": {
+						"attributes": {
+							"back-color": "~ BlackCColor",
+							"background-offset": "0, 0",
+							"class": "CTextLabel",
+							"default-value": "0.5",
+							"font": "~ NormalFont",
+							"font-antialias": "true",
+							"font-color": "~ GreyCColor",
+							"frame-color": "~ GreyCColor",
 							"frame-width": "1",
-							"gradient": "segbutton",
-							"gradient-highlighted": "segbutton2",
-							"icon-text-margin": "0",
 							"max-value": "1",
 							"min-value": "0",
 							"mouse-enabled": "true",
 							"opacity": "1",
-							"origin": "620, 40",
-							"round-radius": "5",
-							"segment-names": "Sine, Square, Triangle",
-							"selection-mode": "Single",
-							"size": "60, 100",
-							"style": "vertical",
+							"origin": "10, 10",
+							"round-rect-radius": "16",
+							"shadow-color": "~ BlackCColor",
+							"size": "50, 20",
+							"style-3D-in": "true",
+							"style-3D-out": "false",
+							"style-no-draw": "false",
+							"style-no-frame": "true",
+							"style-no-text": "false",
+							"style-round-rect": "true",
+							"style-shadow-text": "true",
 							"text-alignment": "center",
-							"text-color": "~ WhiteCColor",
-							"text-color-highlighted": "~ YellowCColor",
+							"text-inset": "1, 1",
+							"text-rotation": "0",
+							"text-shadow-offset": "1, 1",
+							"title": "Bypass",
+							"transparent": "true",
+							"value-precision": "2",
+							"wants-focus": "false",
+							"wheel-inc-value": "0.1"
+						}
+					},
+					"CTextButton": {
+						"attributes": {
+							"class": "CTextButton",
+							"control-tag": "Bypass",
+							"default-value": "0",
+							"font": "~ NormalFont",
+							"frame-color": "None",
+							"frame-color-highlighted": "None",
+							"frame-width": "1",
+							"gradient": "None",
+							"gradient-highlighted": "None",
+							"icon-position": "left",
+							"icon-text-margin": "0",
+							"kick-style": "false",
+							"max-value": "1",
+							"min-value": "0",
+							"mouse-enabled": "true",
+							"opacity": "1",
+							"origin": "10, 10",
+							"round-radius": "6",
+							"size": "50, 20",
+							"text-alignment": "center",
+							"text-color": "~ GreyCColor",
+							"text-color-highlighted": "lightred",
+							"title": "Bypass",
 							"transparent": "false",
 							"wants-focus": "true",
 							"wheel-inc-value": "0.1"

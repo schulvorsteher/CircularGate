@@ -16,6 +16,7 @@
 #include <cstdio>
 #include "mdaParameter.h"
 #include <iomanip>
+#include "public.sdk/source/vst/vstaudioprocessoralgo.h"
 
 
 using namespace Steinberg;
@@ -65,16 +66,17 @@ tresult PLUGIN_API CircularGateProcessor::initialize (FUnknown* context)
 
 
 	allSamples = 0;
-	bBypass = false;
 	fCurrSegmentOld = 0;
 	fBarInfo = 0; 
 
 	reset_sequence = true;
 
+	mBypass = false;
+
 
 	//freopen("/output.log", "w", stdout);
 	//freopen("/outerr.log", "w", stderr);
-	//std::cout << std::fixed << std::setprecision(10);
+	//std::cout << std::fixed << std::setprecision(20);
 
 	return kResultOk;
 }
@@ -114,6 +116,10 @@ tresult PLUGIN_API CircularGateProcessor::process (Vst::ProcessData& data)
 				{
 					switch (paramQueue->getParameterId())
 					{
+					case kBypassId:
+						mBypass = (value > .5f);
+						break;
+
 					case kSegsId:
 						fSegs = (float)value;
 						//controller.setParamNormalized(kSegsId, fsegs);
@@ -121,23 +127,13 @@ tresult PLUGIN_API CircularGateProcessor::process (Vst::ProcessData& data)
 						//std::cout << fSegs << std::endl;
 						break;
 
-					case kPwId:
-						fPw = (float)value;
-						//std::cout << "fPw: ";
-						//std::cout << fPw << std::endl;
-						break;
-					case kSwitchId:
-						fSwitch = (float)value;
-						//std::cout << "fSwitch: ";
-						//std::cout << fSwitch << std::endl;
-						break;
 					case kSequenceId:
-						fSequence = (float)value;
+						fSequence = (double)value;
 						//floatToVector(fSequence);
 						//std::cout << "fSequence: ";
 						//std::cout << fSequence << std::endl;
 						//for (int s : selection)
-						//	std::cout << s << " ";
+						std::cout << fSequence << " " << std::endl;
 						//std::cout << std::endl;
 						break;
 					case kSpeedId:
@@ -169,66 +165,6 @@ tresult PLUGIN_API CircularGateProcessor::process (Vst::ProcessData& data)
 		//
 		uint32	state = data.processContext->state;
 
-		/*
-		std::cout << "BarPositionMusic: ";
-		std::cout << data.processContext->barPositionMusic << std::endl;
-		//std::cout << "Chord: ";
-		//std::cout << data.processContext->chord << std::endl;
-		std::cout << "continousTimeSamples: ";
-		std::cout << data.processContext->continousTimeSamples << std::endl;
-		std::cout << "cycleEndMusic: ";
-		std::cout << data.processContext->cycleEndMusic << std::endl;
-		std::cout << "cycleStartMusic: ";
-		std::cout << data.processContext->cycleStartMusic << std::endl;
-		//std::cout << "frameRate: ";
-		//std::cout << data.processContext->frameRate << std::endl;
-		std::cout << "kBarPositionValid: ";
-		std::cout << data.processContext->kBarPositionValid << std::endl;
-		std::cout << "kChordValid: ";
-		std::cout << data.processContext->kChordValid << std::endl;
-		std::cout << "kClockValid: ";
-		std::cout << data.processContext->kClockValid << std::endl;
-		std::cout << "kContTimeValid: ";
-		std::cout << data.processContext->kContTimeValid << std::endl;
-		std::cout << "kCycleActive: ";
-		std::cout << data.processContext->kCycleActive << std::endl;
-		std::cout << "kCycleValid: ";
-		std::cout << data.processContext->kCycleValid << std::endl;
-		std::cout << "kPlaying: ";
-		std::cout << data.processContext->kPlaying << std::endl;
-		std::cout << "kProjectTimeMusicValid: ";
-		std::cout << data.processContext->kProjectTimeMusicValid << std::endl;
-		std::cout << "kRecording: ";
-		std::cout << data.processContext->kRecording << std::endl;
-		std::cout << "kSmpteValid: ";
-		std::cout << data.processContext->kSmpteValid << std::endl;
-		std::cout << "kSystemTimeValid: ";
-		std::cout << data.processContext->kSystemTimeValid << std::endl;
-		std::cout << "kTempoValid: ";
-		std::cout << data.processContext->kTempoValid << std::endl;
-		std::cout << "kTimeSigValid: ";
-		std::cout << data.processContext->kTimeSigValid << std::endl;
-		std::cout << "projectTimeMusic: ";
-		std::cout << data.processContext->projectTimeMusic << std::endl;
-		std::cout << "projectTimeSamples: ";
-		std::cout << data.processContext->projectTimeSamples << std::endl;
-		std::cout << "sampleRate: ";
-		std::cout << data.processContext->sampleRate << std::endl;
-		std::cout << "samplesToNextClock: ";
-		std::cout << data.processContext->samplesToNextClock << std::endl;
-		std::cout << "smpteOffsetSubframes: ";
-		std::cout << data.processContext->smpteOffsetSubframes << std::endl;
-		std::cout << "state: ";
-		std::cout << data.processContext->state << std::endl;
-		std::cout << "systemTime: ";
-		std::cout << data.processContext->systemTime << std::endl;
-		std::cout << "tempo: ";
-		std::cout << data.processContext->tempo << std::endl;
-		std::cout << "timeSigDenominator: ";
-		std::cout << data.processContext->timeSigDenominator << std::endl;
-		std::cout << "timeSigNumerator: ";
-		std::cout << data.processContext->timeSigNumerator << std::endl;
-		*/
 		if (data.processContext)// && data.processContext->state & Vst::ProcessContext::kTempoValid)
 		{
 			if (data.processContext->tempo != tempo)
@@ -337,82 +273,92 @@ tresult PLUGIN_API CircularGateProcessor::process (Vst::ProcessData& data)
 	int32 numChannels = data.inputs[0].numChannels;
 	Vst::Sample32** in = data.inputs[0].channelBuffers32;
 	Vst::Sample32** out = data.outputs[0].channelBuffers32;
-	
-	for (int32 ch = 0; ch < numChannels; ch++)
+
+
+	if (mBypass)
 	{
-		Vst::Sample32* pIn = in[ch];
-		Vst::Sample32* pOut = out[ch];
-		Vst::Sample32 tmp;
-		
-		
-		for (int32 i = 0;i<data.numSamples;i++)
+		uint32 sampleFramesSize = getSampleFramesSizeInBytes(processSetup, data.numSamples);
+		for (int32 i = 0; i < numChannels; i++)
 		{
-			tmp = *pIn;
-
-			// waveform
-			int waveform = Sequence::waveform_sine;
-			if (fSwitch == 1.f) waveform = Sequence::waveform_saw;
-			else if (fSwitch == .5f)waveform = Sequence::waveform_square;
-
-			float y = Sequence::getValue(allSamples, framesPerBeat, waveform, fPw, vSequence, fSpeedDenormalized, reset_sequence, /*out*/ displayed_segment);
-			reset_sequence = false;
-
-			tmp *= y;
-
-			
-			if (framesPerBeat > 0 && allSamples % framesPerBeat == 0)
+			// do not need to be copied if the buffers are the same
+			if (in[i] != out[i])
 			{
-				clockMessage++;
-				//fCurrSegment = (int)clockMessage % (vSequence.size());
-				//sendClock(clockMessage++);
+				memcpy(out[i], in[i], sampleFramesSize);
 			}
+		}
+	}
+	else
+	{
+		for (int32 ch = 0; ch < numChannels; ch++)
+		{
+			Vst::Sample32* pIn = in[ch];
+			Vst::Sample32* pOut = out[ch];
+			Vst::Sample32 tmp;
 
-			if (displayed_segment >= 0)
+
+			for (int32 i = 0; i < data.numSamples; i++)
 			{
-				if (displayed_segment != displayed_segment_old)
+				tmp = *pIn;
+
+				float y = Sequence::getValue(allSamples, framesPerBeat, vSequence, fSpeedDenormalized, reset_sequence, /*out*/ displayed_segment);
+				reset_sequence = false;
+
+				tmp *= y;
+
+
+				if (framesPerBeat > 0 && allSamples % framesPerBeat == 0)
 				{
-					displayed_segment_old = displayed_segment;
-					fCurrSegment = displayed_segment;
-					//std::cout << "prc_bar:" << bar << std::endl;
-
-					fClockMessage = 100 * fBarInfo + displayed_segment;// clockMessage;
-					if (outParamChanges && fClockMessageOld != fClockMessage)
-					{
-						int32 index = 0;
-						Steinberg::Vst::IParamValueQueue* paramQueue = outParamChanges->addParameterData(kClockId, index);
-						if (paramQueue)
-						{
-							int32 index2 = 0;
-							int mess = (int)fClockMessage;// % 100;
-							paramQueue->addPoint(0, (float)mess / 10000, index2);
-						}
-					}
-					fClockMessageOld = fClockMessage;
+					clockMessage++;
+					//fCurrSegment = (int)clockMessage % (vSequence.size());
+					//sendClock(clockMessage++);
 				}
+
+				if (displayed_segment >= 0)
+				{
+					if (displayed_segment != displayed_segment_old)
+					{
+						displayed_segment_old = displayed_segment;
+						fCurrSegment = displayed_segment;
+						//std::cout << "prc_bar:" << bar << std::endl;
+
+						fClockMessage = 100 * fBarInfo + displayed_segment;// clockMessage;
+						if (outParamChanges && fClockMessageOld != fClockMessage)
+						{
+							int32 index = 0;
+							Steinberg::Vst::IParamValueQueue* paramQueue = outParamChanges->addParameterData(kClockId, index);
+							if (paramQueue)
+							{
+								int32 index2 = 0;
+								int mess = (int)fClockMessage;// % 100;
+								paramQueue->addPoint(0, (float)mess / 10000, index2);
+							}
+						}
+						fClockMessageOld = fClockMessage;
+					}
+				}
+				allSamples++;
+
+				*pOut = tmp;
+				pIn++;
+				pOut++;
 			}
-			allSamples++;
-		
-			*pOut = tmp;
-			pIn++;
-			pOut++;
+
+
 		}
 
 
-	}
-
-
-	if (outParamChanges && fCurrSegment != fCurrSegmentOld)
-	{
-		int32 index = 0;
-		Steinberg::Vst::IParamValueQueue* paramQueue = outParamChanges->addParameterData(kCurrSegmentId, index);
-		if (paramQueue)
+		if (outParamChanges && fCurrSegment != fCurrSegmentOld)
 		{
-			int32 index2 = 0;
-			paramQueue->addPoint(0, (float)fCurrSegment / 100, index2);
+			int32 index = 0;
+			Steinberg::Vst::IParamValueQueue* paramQueue = outParamChanges->addParameterData(kCurrSegmentId, index);
+			if (paramQueue)
+			{
+				int32 index2 = 0;
+				paramQueue->addPoint(0, (float)fCurrSegment / 100, index2);
+			}
+			fCurrSegmentOld = fCurrSegment;
 		}
-		fCurrSegmentOld = fCurrSegment;
 	}
-
 	return kResultOk;
 }
 
@@ -442,22 +388,25 @@ tresult PLUGIN_API CircularGateProcessor::setState (IBStream* state)
 {
 	// called when we load a preset, the model has to be reloaded
 	IBStreamer streamer (state, kLittleEndian);
+
+
 	float fval;
 	if (streamer.readFloat(fval) == false)
 		return kResultFalse;
 	fSegs = fval;
 	if (streamer.readFloat(fval) == false)
 		return kResultFalse;
-	fPw = fval;
-	if (streamer.readFloat(fval) == false)
-		return kResultFalse;
-	fSwitch = fval;
-	if (streamer.readFloat(fval) == false)
-		return kResultFalse;
 	fSequence = fval;
 	if (streamer.readFloat(fval) == false)
 		return kResultFalse;
 	fSpeed = fval;
+
+	int32 savedBypass = 0;
+	if (streamer.readInt32(savedBypass) == false)
+	{
+		// could be an old version, continue))
+	}
+	mBypass = savedBypass > 0;
 
 	return kResultOk;
 }
@@ -467,11 +416,12 @@ tresult PLUGIN_API CircularGateProcessor::getState (IBStream* state)
 {
 	// here we need to save the model
 	IBStreamer streamer (state, kLittleEndian);
+
 	streamer.writeFloat(fSegs);
-	streamer.writeFloat(fPw);
-	streamer.writeFloat(fSwitch);
 	streamer.writeFloat(fSequence);
 	streamer.writeFloat(fSpeed);
+
+	streamer.writeInt32(mBypass ? 1 : 0);
 	
 	return kResultOk;
 }
