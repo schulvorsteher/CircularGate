@@ -59,6 +59,9 @@ namespace csse {
 		void segValueChanged(CControl* pControl);
 		static CControl* findControlForTag(CViewContainer* parent, int32_t tag, bool reverse = true);
 		CDrawContext* getContext();
+		void displaySegs();
+
+
 
 		CLASS_METHODS(CCirclesKnob, CKnobBase)
 	protected:
@@ -73,6 +76,10 @@ namespace csse {
 
 		int segs = 4;
 		int currSeg = 0;
+
+		CControl* segsControl = nullptr;
+		CControl* segsUpControl = nullptr;
+		CControl* segsDownControl = nullptr;
 	};
 
 	//class MyController : public DelegationController, public CBaseObject

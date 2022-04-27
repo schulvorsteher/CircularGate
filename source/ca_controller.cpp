@@ -11,6 +11,7 @@
 #include "params.h"
 #include "mdaParameter.h"
 #include "ca_circles.h"
+#include "ca_sequence.h"
 #include "vstgui/vstgui_uidescription.h"
 #include "vstgui/uidescription/detail/uiviewcreatorattributes.h"
 #include "pluginterfaces/vst/ivsteditcontroller.h"
@@ -38,12 +39,19 @@ tresult PLUGIN_API CircularGateController::initialize (FUnknown* context)
 
 	parameters.addParameter(
 		new Vst::mda::ScaledParameter (
-			STR16("Segments"), STR16("Segments"), 48, default_segs, Vst::ParameterInfo::kCanAutomate, kSegsId,4, 32, true));
-
+			STR16("Segments"), STR16("No"), segs_max, 1, Vst::ParameterInfo::kCanAutomate, kSegsId,segs_min, segs_max, true));
 	
 	// THE Sequence
 	parameters.addParameter(
 		STR16("Sequence"), STR16("Sequence"), 0,  0, Vst::ParameterInfo::kCanAutomate, kSequenceId);
+
+	// Segments Up
+	parameters.addParameter(
+		STR16("SegmentsUp"), nullptr, 1, 0, Vst::ParameterInfo::kNoFlags, kSegsUpId);
+
+	// Segments Down
+	parameters.addParameter(
+		STR16("SegmentsDown"), nullptr, 1, 0, Vst::ParameterInfo::kNoFlags, kSegsDownId);
 
 	// Bypass parameter
 	parameters.addParameter(
@@ -63,7 +71,13 @@ tresult PLUGIN_API CircularGateController::initialize (FUnknown* context)
 	parameters.addParameter(STR16("CurrSegment"), nullptr, stepCount, defaultVal, flags, tag);
 
 	// speed parameter
-	parameters.addParameter(STR16("Speed"), nullptr, 0, 0, Vst::ParameterInfo::kCanAutomate, kSpeedId);
+	parameters.addParameter(STR16("Speed"), nullptr, 9, 0, Vst::ParameterInfo::kCanAutomate, kSpeedId);
+
+	// Stereo parameter
+	parameters.addParameter(STR16("Stereo"), STR16("%"), 0, .5f, Vst::ParameterInfo::kCanAutomate, kStereoId);
+
+	// Blur parameter
+	parameters.addParameter(STR16("Blur"), STR16("%"), 0, .5f, Vst::ParameterInfo::kCanAutomate, kBlurId);
 
 	return result;
 }
@@ -97,6 +111,12 @@ tresult PLUGIN_API CircularGateController::setComponentState (IBStream* state)
 	if (streamer.readFloat(fval) == false)
 		return kResultFalse;
 	setParamNormalized(kSpeedId, fval);
+	if (streamer.readFloat(fval) == false)
+		return kResultFalse;
+	setParamNormalized(kStereoId, fval);
+	if (streamer.readFloat(fval) == false)
+		return kResultFalse;
+	setParamNormalized(kBlurId, fval);
 
 	int32 bypassState = 0;
 	if (streamer.readInt32(bypassState) == false)
@@ -147,11 +167,29 @@ IPlugView* PLUGIN_API CircularGateController::createView (FIDString name)
 tresult PLUGIN_API CircularGateController::setParamNormalized (Vst::ParamID tag, Vst::ParamValue value)
 {
 	// called by host to update your parameters
-	tresult result = EditControllerEx1::setParamNormalized (tag, value);
+	tresult result = kResultOk;
+	float fsegs;
+	if (tag == kSegsId) {
+		fsegs = value;
+	}
+
+	if ((tag == kSegsDownId || tag == kSegsUpId) && value == 1.f)
+	{
+		float fsegs = getParamNormalized(kSegsId);
+		float step = static_cast<float>(1) / (segs_max - segs_min + 1);
+
+		float newVal = (tag == kSegsUpId) ? fsegs + step : fsegs - step;
+		setParamNormalized(kSegsId, (float)newVal);
+
+
+	}
+	else
+		result = EditControllerEx1::setParamNormalized (tag, value);
+
 	return result;
 }
 
-//------------------------------------------------------------------------
+//------------------------------------------------tag==------------------------
 tresult PLUGIN_API CircularGateController::getParamStringByValue (Vst::ParamID tag, Vst::ParamValue valueNormalized, Vst::String128 string)
 {
 	// called by host to get a string for given normalized value of a specific parameter
@@ -173,14 +211,15 @@ tresult PLUGIN_API CircularGateController::notify(Vst::IMessage* message) {
 		const void* dataOut;
 		double clockMessage;
 		if (message->getAttributes()->getFloat("clock", clockMessage) == kResultOk) {
-
-
 			int i = 1;
-			//if (this->getmy) 
-			//	if (&view->getFFTView()) {
-			//		view->getFFTView()->updateLineList(&view->getFFTView()->linelists, (std::vector<CDrawContext::LinePair>*)dataOut);
-			//	}
-			//}
+		}
+		return kResultOk;
+	}
+	if (!strcmp(message->getMessageID(), "SegmentMessage")) {
+		const void* dataOut;
+		double segmentsMessage;
+		if (message->getAttributes()->getFloat("Segments", segmentsMessage) == kResultOk) {
+			int i = 1;
 		}
 		return kResultOk;
 	}

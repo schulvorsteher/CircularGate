@@ -7,7 +7,8 @@
 //#include "vstgui/uidescription/detail/uiviewcreatorattributes.h"
 #include <iostream>
 #include <cstdio>
-
+#include <chrono>
+#include <thread>
 
 using namespace VSTGUI;
 namespace csse {
@@ -111,7 +112,7 @@ namespace csse {
 		{
 			segControl = findControlForTag(getFrame(), kSegsId, true);
 		}
-		if (segControl)
+		if (segControl )
 		{
 			segValueChanged(segControl);
 			adjustSelection(getSegs());
@@ -256,13 +257,6 @@ namespace csse {
 
 				if (rect.pointInside(where))
 				{
-					//std::cout << "selected "<< i <<" {";
-					//for (int n : selection)
-					//{
-					//	std::cout << n << " ";
-					//}
-					//std::cout << "}" << std::endl;
-
 					return i;
 				}
 			}
@@ -386,14 +380,15 @@ namespace csse {
 
 	void CCirclesKnob::adjustSelection(int segs)
 	{
+		//segs = segs_max;
 		while (selection.size() < segs)
 		{
 			selection.push_back(0);
 		}
-		while (selection.size() > segs)
-		{
-			selection.pop_back();
-		}
+		//while (selection.size() > segs)
+		//{
+		//	selection.pop_back();
+		//}
 	}
 
 	void CCirclesKnob::setValueNormalized(float val)
@@ -419,8 +414,8 @@ namespace csse {
 
 	int CCirclesKnob::getSegs()
 	{
-		if (segs < 4) segs = 4;
-		if (segs > 32) segs = 32;
+		if (segs < segs_min) segs = segs_min;
+		if (segs > segs_max) segs = segs_max;
 		return segs;
 	}
 
@@ -462,47 +457,7 @@ namespace csse {
 		auto norm = pControl->getValueNormalized();
 		int denorm = int(pControl->getValue());
 		setSegs(denorm);
-
 	}
-
-	class MyController : public DelegationController, public CBaseObject
-	{
-	public:
-		MyController(IController* baseController) : DelegationController(baseController), controlView(nullptr) {}
-		~MyController()
-		{
-			if (controlView)
-			{
-				controlView->unregisterControlListener(this);
-				controlView->forget();
-			}
-		}
-
-		CView* verifyView(CView* view, const UIAttributes& attributes, IUIDescription* description)
-		{
-			auto* control = dynamic_cast<CControl*> (view);
-			if (control && control->getTag() == 100)
-			{
-				controlView = control;
-				controlView->registerControlListener(this);
-				controlView->remember();
-			}
-			return controller->verifyView(view, attributes, description);
-		}
-		void valueChanged(CControl* pControl) override
-		{
-			if (pControl == controlView)
-			{
-				// value of the control view changed, do whatever you like
-				//segValueChanged(segControl);
-				//adjustSelection(getSegs());
-			}
-			DelegationController::valueChanged(pControl);
-		}
-
-	protected:
-		CControl* controlView;
-	};
 
 
 }// namespace csse

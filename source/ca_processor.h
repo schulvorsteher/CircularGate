@@ -62,16 +62,16 @@ protected:
 	float fCurrSegment = 0;
 	float fCurrSegmentOld = 0;
 
-	float fSegs = default_segs;
+	float fSegs = segs_min;
 	int iSegs = 0;
 	int iSegsOld = 0;
 	float fSegsOld = 0;
-	float fPw = default_pw;
-	float fWaveform = 0;
 	double fSequence = 0;
 	int iSequence = 0;
 	double fSequenceOld = 0;
 	float fSpeed = 0;
+	float fBlur = 0;
+	float fStereo = 0.5f;
 	float fSpeedOld = 0;
 	int alternator;
 	double tempo;
