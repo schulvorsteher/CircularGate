@@ -74,9 +74,9 @@ tresult PLUGIN_API CircularGateProcessor::initialize (FUnknown* context)
 	mBypass = false;
 
 
-	freopen("/output.log", "w", stdout);
-	freopen("/outerr.log", "w", stderr);
-	std::cout << std::fixed << std::setprecision(20);
+	//freopen("/output.log", "w", stdout);
+	//freopen("/outerr.log", "w", stderr);
+	//std::cout << std::fixed << std::setprecision(20);
 
 	return kResultOk;
 }
@@ -258,19 +258,19 @@ tresult PLUGIN_API CircularGateProcessor::process (Vst::ProcessData& data)
 			//sendNofSegments(fSegs);
 		}
 		iSegs = Sequence::denormalizeSegments(fSegs);
-		std::cout << "ca_processor 261: iSegs:     ";
-		std::cout << iSegs << std::endl;
+		//std::cout << "ca_processor 261: iSegs:     ";
+		//std::cout << iSegs << std::endl;
 
 
 		iSequence = Sequence::sequenceToInt(fSequence, iSegs);
-		std::cout << "ca_processor 266: iSequence: ";
-		std::cout << iSequence << std::endl;
+		//std::cout << "ca_processor 266: iSequence: ";
+		//std::cout << iSequence << std::endl;
 
 		vSequence = Sequence::sequenceToVector(iSequence, iSegs);
-		std::cout << "ca_processor 271: vSequence: ";
-		for (int s : vSequence)
-			std::cout << s << " ";
-		std::cout << std::endl;
+		//std::cout << "ca_processor 271: vSequence: ";
+		//for (int s : vSequence)
+		//	std::cout << s << " ";
+		//std::cout << std::endl;
 
 		fSegsOld = fSegs;
 		fSequenceOld = fSequence;
@@ -319,13 +319,24 @@ tresult PLUGIN_API CircularGateProcessor::process (Vst::ProcessData& data)
 				float y = Sequence::getValue(allSamples, framesPerBeat, vSequence, fSpeedDenormalized, reset_sequence, fBlur, /*out*/ displayed_segment);
 				reset_sequence = false;
 
-				if (ch == 0)
-					tmp *= y;// *fStereo + (1 - y) * (1 - fStereo);
-				else
-					tmp *= (1 - y) * (fStereo)+y * (1 - fStereo);
+				//if (ch == 0)
+				//	tmp *= y;// *fStereo + (1 - y) * (1 - fStereo);
+				//else
+				//	tmp *= (1 - y) * (fStereo)+y * (1 - fStereo);
+				if (fStereo <.5f)
+				{
+					tmp *= ch == 0 ? y : (1 - y);
+				}
+				else if (fStereo < 1.0f)
+				{
+					tmp *= y; // for all channels
+				}
+				else // fStereo == 1.0f
+				{
+					tmp *= ch == 0 ? (1 - y) : y;
+				}
 
-
-				//if (ch == 0) {
+				if (ch == 0) {
 					if (framesPerBeat > 0 && allSamples % framesPerBeat == 0)
 					{
 						clockMessage++;
@@ -355,7 +366,7 @@ tresult PLUGIN_API CircularGateProcessor::process (Vst::ProcessData& data)
 							}
 							fClockMessageOld = fClockMessage;
 						}
-					//}
+					}
 				}
 				allSamples++;
 

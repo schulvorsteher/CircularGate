@@ -61,8 +61,6 @@ namespace csse {
 		CDrawContext* getContext();
 		void displaySegs();
 
-
-
 		CLASS_METHODS(CCirclesKnob, CKnobBase)
 	protected:
 		~CCirclesKnob() noexcept override = default;
