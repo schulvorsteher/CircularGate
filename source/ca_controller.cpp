@@ -176,7 +176,12 @@ tresult PLUGIN_API CircularGateController::setParamNormalized (Vst::ParamID tag,
 	if ((tag == kSegsDownId || tag == kSegsUpId) && value == 1.f)
 	{
 		float fsegs = getParamNormalized(kSegsId);
-		float step = static_cast<float>(1) / (segs_max - segs_min + 1);
+		float step = static_cast<float>(1) / (segs_max);// -segs_min - 1);
+		float fmin = 1* step;
+		if (fsegs < fmin)
+		{
+			fsegs = fmin;
+		}
 
 		float newVal = (tag == kSegsUpId) ? fsegs + step : fsegs - step;
 		setParamNormalized(kSegsId, (float)newVal);
@@ -205,26 +210,26 @@ tresult PLUGIN_API CircularGateController::getParamValueByString (Vst::ParamID t
 	return EditControllerEx1::getParamValueByString (tag, string, valueNormalized);
 }
 
-tresult PLUGIN_API CircularGateController::notify(Vst::IMessage* message) {
-	if (!message) { return kInvalidArgument; }
-	if (!strcmp(message->getMessageID(), "ClockMessage")) {
-		const void* dataOut;
-		double clockMessage;
-		if (message->getAttributes()->getFloat("clock", clockMessage) == kResultOk) {
-			int i = 1;
-		}
-		return kResultOk;
-	}
-	if (!strcmp(message->getMessageID(), "SegmentMessage")) {
-		const void* dataOut;
-		double segmentsMessage;
-		if (message->getAttributes()->getFloat("Segments", segmentsMessage) == kResultOk) {
-			int i = 1;
-		}
-		return kResultOk;
-	}
-	return EditControllerEx1::notify(message);
-}
+//tresult PLUGIN_API CircularGateController::notify(Vst::IMessage* message) {
+//	if (!message) { return kInvalidArgument; }
+//	if (!strcmp(message->getMessageID(), "ClockMessage")) {
+//		const void* dataOut;
+//		double clockMessage;
+//		if (message->getAttributes()->getFloat("clock", clockMessage) == kResultOk) {
+//			int i = 1;
+//		}
+//		return kResultOk;
+//	}
+//	if (!strcmp(message->getMessageID(), "SegmentMessage")) {
+//		const void* dataOut;
+//		double segmentsMessage;
+//		if (message->getAttributes()->getFloat("Segments", segmentsMessage) == kResultOk) {
+//			int i = 1;
+//		}
+//		return kResultOk;
+//	}
+//	return EditControllerEx1::notify(message);
+//}
 
 //------------------------------------------------------------------------
 } // namespace csse

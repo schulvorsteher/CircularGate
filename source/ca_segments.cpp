@@ -1,3 +1,4 @@
+// This file is part of VSTGUI. It is subject to the license terms 
 #include "vstgui/vstgui.h"
 #include "ca_segments.h"
 #include <cmath>
@@ -9,15 +10,16 @@
 #include <chrono>
 #include <thread>
 
-
 using namespace VSTGUI;
 namespace csse {
-
 
 	//------------------------------------------------------------------------
 	// CSegmentsButton
 	//------------------------------------------------------------------------
 	/*! @class CSegmentsButton
+	Define a button with 2 states using 2 subbitmaps.
+	One click on it, then the second subbitmap is displayed.
+	When the mouse button is relaxed, the first subbitmap is framed.
 	*/
 	//------------------------------------------------------------------------
 	/**

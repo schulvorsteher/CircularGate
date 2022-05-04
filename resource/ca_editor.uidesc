@@ -35,6 +35,12 @@
 			"GreenLED": {
 				"path": "D:\\myvst\\CircularGate\\resource\\GreenLED.png"
 			},
+			"GreenLED_off": {
+				"path": "D:\\myvst\\CircularGate\\resource\\GreenLED_off.png"
+			},
+			"GreenLED_off 1": {
+				"path": "D:\\myvst\\CircularGate\\resource\\GreenLED_off.png"
+			},
 			"MS20": {
 				"path": "d:\\myvst\\CircularGate\\resource\\MS20.png"
 			},
@@ -52,6 +58,12 @@
 			},
 			"Prophet_5": {
 				"path": "d:\\myvst\\CircularGate\\resource\\Prophet_5.png"
+			},
+			"RedLED": {
+				"path": "D:\\myvst\\CircularGate\\resource\\RedLED.png"
+			},
+			"RedLED_off": {
+				"path": "D:\\myvst\\CircularGate\\resource\\RedLED_off.png"
 			},
 			"Red_Button": {
 				"path": "d:\\Users\\chris\\Pictures\\Knobs\\Red_Button.png"
@@ -240,7 +252,7 @@
 				"SelectedRow": "5"
 			},
 			"UIBitmapsDataSource": {
-				"SelectedRow": "10"
+				"SelectedRow": "20"
 			},
 			"UITagsDataSource": {
 				"SelectedRow": "2"
@@ -943,6 +955,85 @@
 							"wants-focus": "false",
 							"wheel-inc-value": "0.1",
 							"zoom-factor": "1.5"
+						}
+					},
+					"CControl": {
+						"attributes": {
+							"bitmap": "GreenLED",
+							"class": "CControl",
+							"default-value": "0.5",
+							"max-value": "1",
+							"min-value": "0",
+							"mouse-enabled": "true",
+							"opacity": "1",
+							"origin": "390, 90",
+							"size": "60, 60",
+							"transparent": "false",
+							"wants-focus": "false",
+							"wheel-inc-value": "0.1"
+						}
+					},
+					"CControl": {
+						"attributes": {
+							"bitmap": "GreenLED_off",
+							"class": "CControl",
+							"default-value": "0.5",
+							"max-value": "1",
+							"min-value": "0",
+							"mouse-enabled": "true",
+							"opacity": "1",
+							"origin": "390, 130",
+							"size": "60, 70",
+							"transparent": "false",
+							"wants-focus": "false",
+							"wheel-inc-value": "0.1"
+						}
+					},
+					"CControl": {
+						"attributes": {
+							"class": "CControl",
+							"default-value": "0.5",
+							"max-value": "1",
+							"min-value": "0",
+							"mouse-enabled": "true",
+							"opacity": "1",
+							"origin": "400, 190",
+							"size": "40, 40",
+							"transparent": "false",
+							"wants-focus": "false",
+							"wheel-inc-value": "0.1"
+						}
+					},
+					"CControl": {
+						"attributes": {
+							"bitmap": "RedLED",
+							"class": "CControl",
+							"default-value": "0.5",
+							"max-value": "1",
+							"min-value": "0",
+							"mouse-enabled": "true",
+							"opacity": "1",
+							"origin": "620, 70",
+							"size": "70, 60",
+							"transparent": "false",
+							"wants-focus": "false",
+							"wheel-inc-value": "0.1"
+						}
+					},
+					"CControl": {
+						"attributes": {
+							"bitmap": "RedLED_off",
+							"class": "CControl",
+							"default-value": "0.5",
+							"max-value": "1",
+							"min-value": "0",
+							"mouse-enabled": "true",
+							"opacity": "1",
+							"origin": "620, 100",
+							"size": "70, 80",
+							"transparent": "false",
+							"wants-focus": "false",
+							"wheel-inc-value": "0.1"
 						}
 					}
 				}

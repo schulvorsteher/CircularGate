@@ -6,6 +6,8 @@
 #include "vector"
 #include "pluginterfaces/vst/ivstmessage.h"
 
+using namespace Steinberg;
+
 namespace csse {
 
 //------------------------------------------------------------------------
@@ -24,9 +26,9 @@ public:
 		float fBlur,
 		int& displayed_segment);
 
-	static std::vector<int> sequenceToVector(int iSequence, int iSegs);
+	static std::vector<int> sequenceToVector(int64 iSequence, int iSegs);
 	static float vectorToSequence(std::vector<int> selection);
-	static int sequenceToInt(float val, int vectorsize);
+	static int64 sequenceToInt(float val, int vectorsize);
 
 	static int denormalizeSegments(float fSegs);
 	static float normalizeSegments(int segs);

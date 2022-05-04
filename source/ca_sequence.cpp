@@ -10,6 +10,7 @@
 #include "vstgui/vstgui.h"
 #include "params.h"
 
+using namespace Steinberg;
 namespace csse {
 	
 
@@ -121,13 +122,13 @@ namespace csse {
 	//	return (int)(sequence * max);
 	//}
 
-	std::vector<int> Sequence::sequenceToVector(int iSequence, int iSegs)
+	std::vector<int> Sequence::sequenceToVector(int64 iSequence, int iSegs)
 	{
 		std::vector<int> selection;
-		int val = iSequence;
+		int64 val = iSequence;
 		for (int i = 0; i < iSegs; i++)
 		{
-			int v = val % 2;
+			int64 v = val % 2;
 			selection.push_back(v);
 			val -= v;
 			val /= 2;
@@ -137,20 +138,20 @@ namespace csse {
 
 	float Sequence::vectorToSequence(std::vector<int> selection)
 	{
-		int iSequence = 0;
+		int64 iSequence = 0;
 		for (int i = 0; i < selection.size(); i++)
 		{
 			if (selection[i] == 1)
-				iSequence += pow(2, i);
+				iSequence += (int64)pow(2, i);
 		}
 		float fSequence = iSequence / pow(10, ceil((float)selection.size() / 3));
 		return fSequence;
 	}
 
-	int Sequence::sequenceToInt(float val, int vectorsize)
+	int64 Sequence::sequenceToInt(float val, int vectorsize)
 	{
-		int factor = pow(10, std::ceil((float)vectorsize / 3));
-		int retval = round(val * factor);
+		int64 factor = pow(10, std::ceil((float)vectorsize / 3));
+		int64 retval = round(val * factor);
 		return retval;
 	}
 

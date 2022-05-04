@@ -73,11 +73,12 @@ namespace csse {
 		float mouseStartValue;
 
 		int segs = 4;
+		int segsold = 0;
 		int currSeg = 0;
 
-		CControl* segsControl = nullptr;
-		CControl* segsUpControl = nullptr;
-		CControl* segsDownControl = nullptr;
+		//CControl* segsControl = nullptr;
+		//CControl* segsUpControl = nullptr;
+		//CControl* segsDownControl = nullptr;
 	};
 
 	//class MyController : public DelegationController, public CBaseObject

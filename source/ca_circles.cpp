@@ -160,7 +160,11 @@ namespace csse {
 		{
 			float v = getValueNormalized();
 			float v1 = getValue();
+
 			int i = v * 100;// getSegs();
+			//std::cout << "ca_circles 163: currSegment: ";
+			//std::cout << i << std::endl;
+			
 			CRect seg = getSegmentRect(i, R, r);
 			drawSegBackground(seg, i, R, r);
 		}
@@ -399,7 +403,7 @@ namespace csse {
 			val = 0.f;
 		setValue(getRange() * val + getMin());
 
-		int iSequence = Sequence::sequenceToInt(val, getSegs());
+		int64 iSequence = Sequence::sequenceToInt(val, getSegs());
 		selection = Sequence::sequenceToVector(iSequence, getSegs());
 	}
 
@@ -455,8 +459,13 @@ namespace csse {
 	void CCirclesKnob::segValueChanged(CControl* pControl)
 	{
 		auto norm = pControl->getValueNormalized();
-		int denorm = int(pControl->getValue());
-		setSegs(denorm);
+		int segs = int(pControl->getValue());
+		if (segs != segsold) {
+			//std::cout << "ca_circles 460: segments: ";
+			//std::cout << segs << std::endl;
+			setSegs(segs);
+			segsold = segs;
+		}
 	}
 
 
