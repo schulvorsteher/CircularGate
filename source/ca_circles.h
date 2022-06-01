@@ -79,6 +79,10 @@ namespace csse {
 		//CControl* segsControl = nullptr;
 		//CControl* segsUpControl = nullptr;
 		//CControl* segsDownControl = nullptr;
+		//CBitmap* greenLed = new CBitmap("D:/myvst/CircularGate/resource/GreenLED_noaura.png"); // string
+		//CBitmap* greenLed_OFF = new CBitmap("D:/myvst/CircularGate/resource/GreenLED_OFF.png"); // string
+
+
 	};
 
 	//class MyController : public DelegationController, public CBaseObject

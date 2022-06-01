@@ -67,7 +67,7 @@ protected:
 	int iSegsOld = 0;
 	float fSegsOld = 0;
 	double fSequence = 0;
-	int64 iSequence = 0;
+	uint64 iSequence = 0;
 	double fSequenceOld = 0;
 	float fSpeed = 0;
 	float fBlur = 0;

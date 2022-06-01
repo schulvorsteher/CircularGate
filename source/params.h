@@ -17,3 +17,4 @@ enum
 #define default_stereo 0.5
 #define segs_max 32
 #define segs_min 4
+#define segs_default 16

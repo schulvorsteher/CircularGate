@@ -26,9 +26,9 @@ public:
 		float fBlur,
 		int& displayed_segment);
 
-	static std::vector<int> sequenceToVector(int64 iSequence, int iSegs);
-	static float vectorToSequence(std::vector<int> selection);
-	static int64 sequenceToInt(float val, int vectorsize);
+	static std::vector<int> sequenceToVector(uint64 iSequence, int iSegs);
+	static double vectorToSequence(std::vector<int> selection);
+	static uint64 sequenceToInt(double val, int vectorsize);
 
 	static int denormalizeSegments(float fSegs);
 	static float normalizeSegments(int segs);

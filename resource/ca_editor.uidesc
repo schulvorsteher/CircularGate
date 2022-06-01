@@ -2,140 +2,71 @@
 	"vstgui-ui-description": {
 		"version": "1",
 		"bitmaps": {
-			"Black_Plastic_small_01": {
-				"path": "D:\\myvst\\CircularGate\\resource\\Black_Plastic_small_01.png"
-			},
 			"Carbon": {
 				"path": "d:\\myvst\\CircularGate\\resource\\Carbon.png"
 			},
-			"Down10": {
-				"path": "D:\\myvst\\CircularGate\\resource\\Down10.png"
-			},
-			"Down11": {
-				"path": "D:\\myvst\\CircularGate\\resource\\Down11.png"
-			},
 			"Down5": {
-				"path": "d:\\myvst\\CircularGate\\resource\\Down5.png"
-			},
-			"Down6": {
-				"path": "d:\\myvst\\CircularGate\\resource\\Down6.png"
-			},
-			"Down7": {
-				"path": "d:\\myvst\\CircularGate\\resource\\Down7.png"
+				"path": "D:\\myvst\\CircularGate\\resource\\Down5.png"
 			},
 			"Down8": {
 				"path": "D:\\myvst\\CircularGate\\resource\\Down8.png"
 			},
-			"Down9": {
-				"path": "D:\\myvst\\CircularGate\\resource\\Down9.png"
+			"Dual_LED_onoff_small": {
+				"path": "D:\\myvst\\CircularGate\\resource\\Dual_LED_onoff_small.png"
 			},
-			"DownOff2": {
-				"path": "d:\\myvst\\CircularGate\\resource\\DownOff2.png"
-			},
-			"GreenLED": {
-				"path": "D:\\myvst\\CircularGate\\resource\\GreenLED.png"
-			},
-			"GreenLED_off": {
-				"path": "D:\\myvst\\CircularGate\\resource\\GreenLED_off.png"
-			},
-			"GreenLED_off 1": {
-				"path": "D:\\myvst\\CircularGate\\resource\\GreenLED_off.png"
-			},
-			"MS20": {
-				"path": "d:\\myvst\\CircularGate\\resource\\MS20.png"
-			},
-			"MiniMoog_Main": {
-				"path": "d:\\myvst\\CircularGate\\resource\\MiniMoog_Main.png"
-			},
-			"Off1": {
-				"path": "d:\\myvst\\CircularGate\\resource\\Off1.png"
-			},
-			"Old_amp_black_01": {
-				"path": "d:\\myvst\\CircularGate\\resource\\Old_amp_black_01.png"
-			},
-			"On1": {
-				"path": "d:\\myvst\\CircularGate\\resource\\On1.png"
-			},
-			"Prophet_5": {
-				"path": "d:\\myvst\\CircularGate\\resource\\Prophet_5.png"
-			},
-			"RedLED": {
-				"path": "D:\\myvst\\CircularGate\\resource\\RedLED.png"
-			},
-			"RedLED_off": {
-				"path": "D:\\myvst\\CircularGate\\resource\\RedLED_off.png"
-			},
-			"Red_Button": {
-				"path": "d:\\Users\\chris\\Pictures\\Knobs\\Red_Button.png"
-			},
-			"Red_Button_50": {
-				"path": "d:\\myvst\\CircularGate\\resource\\Red_Button_50.png"
-			},
-			"Red_Button_Green_60": {
-				"path": "d:\\myvst\\CircularGate\\resource\\Red_Button_Green_60.png"
-			},
-			"Red_Button_Green_60a": {
-				"path": "d:\\myvst\\CircularGate\\resource\\Red_Button_Green_60a.png"
-			},
-			"S_Button-1": {
-				"path": "D:\\myvst\\CircularGate\\resource\\S_Button-1.png"
+			"Oberheim_DX_Faders3_5%": {
+				"path": "D:\\myvst\\CircularGate\\resource\\Oberheim_DX_Faders3_5%.png"
 			},
 			"SliderBackground": {
-				"path": "d:\\myvst\\CircularGate\\resource\\SliderBackground.png"
+				"path": "D:\\myvst\\CircularGate\\resource\\SliderBackground.png"
+			},
+			"SliderBackground_50%": {
+				"path": "D:\\myvst\\CircularGate\\resource\\SliderBackground_50%.png"
 			},
 			"SliderKnob": {
-				"path": "d:\\myvst\\CircularGate\\resource\\SliderKnob.png"
+				"path": "D:\\myvst\\CircularGate\\resource\\SliderKnob.png"
 			},
-			"Slider_white": {
-				"path": "d:\\myvst\\CircularGate\\resource\\Slider_white.png"
+			"SliderKnob_50%": {
+				"path": "D:\\myvst\\CircularGate\\resource\\SliderKnob_50%.png"
 			},
-			"Up10": {
-				"path": "D:\\myvst\\CircularGate\\resource\\Up10.png"
+			"Slider_Knob": {
+				"path": "D:\\myvst\\CircularGate\\resource\\Slider_Knob.png"
+			},
+			"Slider_Knob_5%": {
+				"path": "D:\\myvst\\CircularGate\\resource\\Slider_Knob_5%.png"
+			},
+			"Slider_Knob_new": {
+				"path": "D:\\myvst\\CircularGate\\resource\\Slider_Knob_new.png"
+			},
+			"Slider_back": {
+				"path": "D:\\myvst\\CircularGate\\resource\\Slider_back.png"
+			},
+			"Slider_back_5%": {
+				"path": "D:\\myvst\\CircularGate\\resource\\Slider_back_5%.png"
+			},
+			"Sliderback": {
+				"path": "D:\\myvst\\CircularGate\\resource\\Sliderback.png"
 			},
 			"Up5": {
-				"path": "d:\\myvst\\CircularGate\\resource\\Up5.png"
-			},
-			"Up6": {
-				"path": "d:\\myvst\\CircularGate\\resource\\Up6.png"
-			},
-			"Up7": {
-				"path": "d:\\myvst\\CircularGate\\resource\\Up7.png"
-			},
-			"Up8": {
-				"path": "D:\\myvst\\CircularGate\\resource\\Up8.png"
-			},
-			"Up9": {
-				"path": "D:\\myvst\\CircularGate\\resource\\Up9.png"
-			},
-			"UpOff2": {
-				"path": "d:\\myvst\\CircularGate\\resource\\UpOff2.png"
-			},
-			"knob_31levels": {
-				"path": "d:\\myvst\\CircularGate\\resource\\knob_31levels.png"
+				"path": "D:\\myvst\\CircularGate\\resource\\Up5.png"
 			},
 			"knob_3state": {
 				"path": "D:\\myvst\\CircularGate\\resource\\knob_3state.png"
 			},
-			"knob_black": {
-				"path": "d:\\myvst\\CircularGate\\resource\\knob_black.png"
+			"led_3_state_green_redux": {
+				"path": "D:\\myvst\\CircularGate\\resource\\led_3_state_green_redux.png"
 			},
-			"led_3_state_red": {
-				"path": "D:\\myvst\\CircularGate\\resource\\led_3_state_red.png"
+			"led_green_dual_continuous": {
+				"path": "D:\\myvst\\CircularGate\\resource\\led_green_dual_continuous.png"
 			},
-			"onoff1": {
-				"path": "d:\\myvst\\CircularGate\\resource\\onoff1.png"
+			"led_green_dual_continuous_reverse": {
+				"path": "D:\\myvst\\CircularGate\\resource\\led_green_dual_continuous_reverse.png"
 			},
-			"onoff2": {
-				"path": "d:\\myvst\\CircularGate\\resource\\onoff2.png"
+			"led_green_dual_continuous_reverse_wide": {
+				"path": "D:\\myvst\\CircularGate\\resource\\led_green_dual_continuous_reverse_wide.png"
 			},
 			"panel": {
 				"path": "d:\\myvst\\CircularGate\\resource\\panel.png"
-			},
-			"panel2": {
-				"path": "d:\\myvst\\CircularGate\\resource\\panel2.png"
-			},
-			"slider32": {
-				"path": "d:\\Users\\chris\\Pictures\\Knobs\\slider32.png"
 			}
 		},
 		"fonts": {
@@ -145,6 +76,7 @@
 			}
 		},
 		"colors": {
+			"darkgreen": "#3c914aff",
 			"lightgreen": "#8cffa6ff",
 			"lightgrey": "#c3c3c3ff",
 			"lightred": "#fa9696ff",
@@ -237,22 +169,22 @@
 			},
 			"UIEditController": {
 				"EditViewScale": "1",
-				"EditorSize": "0, 0, 1240.8, 1242.4",
-				"SplitViewSize_0_0": "0.8780006576783951910414316444075666368008",
-				"SplitViewSize_0_1": "0.1052285432423544775382140414876630529761",
-				"SplitViewSize_1_0": "0.7867477803354159249238364282064139842987",
-				"SplitViewSize_1_1": "0.2071686945083853759186354182020295411348",
-				"SplitViewSize_2_0": "0.7108317214700193842347175632312428206205",
-				"SplitViewSize_2_1": "0.2852998065764023039037056150846183300018",
-				"TabSwitchValue": "4",
+				"EditorSize": "0, 0, 1068, 806.4",
+				"SplitViewSize_0_0": "0.4548949256791389172960293763026129454374",
+				"SplitViewSize_0_1": "0.518964633521271201388458393921609967947",
+				"SplitViewSize_1_0": "0.5535622757560225704054346351767890155315",
+				"SplitViewSize_1_1": "0.4369554074833418844114873991202330216765",
+				"SplitViewSize_2_0": "0.6900749063670411631576939726073760539293",
+				"SplitViewSize_2_1": "0.3052434456928839190403834891185397282243",
+				"TabSwitchValue": "0",
 				"Version": "1"
 			},
 			"UIAttributesController": {},
 			"UIViewCreatorDataSource": {
-				"SelectedRow": "5"
+				"SelectedRow": "15"
 			},
 			"UIBitmapsDataSource": {
-				"SelectedRow": "20"
+				"SelectedRow": "14"
 			},
 			"UITagsDataSource": {
 				"SelectedRow": "2"
@@ -290,7 +222,7 @@
 							"class": "CViewContainer",
 							"mouse-enabled": "true",
 							"opacity": "1",
-							"origin": "80, 10",
+							"origin": "160, 10",
 							"size": "230, 230",
 							"transparent": "true",
 							"wants-focus": "false"
@@ -345,11 +277,11 @@
 							"min-value": "0",
 							"mouse-enabled": "true",
 							"opacity": "1",
-							"origin": "20, 70",
+							"origin": "100, 40",
 							"round-radius": "5",
 							"segment-names": "8,4,2,1,1/2,1/4,1/8,1/16,1/32",
 							"selection-mode": "Single",
-							"size": "40, 150",
+							"size": "40, 180",
 							"style": "vertical",
 							"text-alignment": "center",
 							"text-color": "lightgrey",
@@ -374,7 +306,7 @@
 							"min-value": "0",
 							"mouse-enabled": "true",
 							"opacity": "1",
-							"origin": "10, 40",
+							"origin": "90, 10",
 							"round-rect-radius": "16",
 							"shadow-color": "~ BlackCColor",
 							"size": "60, 30",
@@ -470,7 +402,7 @@
 							"class": "CParamDisplay",
 							"control-tag": "Segments",
 							"default-value": "32",
-							"font": "~ NormalFontBig",
+							"font": "~ NormalFontVeryBig",
 							"font-antialias": "true",
 							"font-color": "lightgreen",
 							"frame-color": "~ TransparentCColor",
@@ -479,17 +411,17 @@
 							"min-value": "4",
 							"mouse-enabled": "true",
 							"opacity": "1",
-							"origin": "331, 105",
+							"origin": "260, 111",
 							"round-rect-radius": "100",
-							"shadow-color": "~ BlackCColor",
-							"size": "20, 20",
-							"style-3D-in": "false",
-							"style-3D-out": "false",
+							"shadow-color": "~ GreyCColor",
+							"size": "30, 30",
+							"style-3D-in": "true",
+							"style-3D-out": "true",
 							"style-no-draw": "false",
 							"style-no-frame": "false",
 							"style-no-text": "false",
 							"style-round-rect": "false",
-							"style-shadow-text": "false",
+							"style-shadow-text": "true",
 							"text-alignment": "center",
 							"text-inset": "0, 0",
 							"text-rotation": "0",
@@ -515,7 +447,7 @@
 							"min-value": "0",
 							"mouse-enabled": "true",
 							"opacity": "1",
-							"origin": "310, 10",
+							"origin": "150, 10",
 							"round-rect-radius": "16",
 							"shadow-color": "~ BlackCColor",
 							"size": "60, 30",
@@ -537,44 +469,6 @@
 							"wheel-inc-value": "0.1"
 						}
 					},
-					"CKickButton": {
-						"attributes": {
-							"bitmap": "Up9",
-							"class": "CKickButton",
-							"control-tag": "SegmentsUp",
-							"default-value": "0",
-							"height-of-one-image": "15",
-							"max-value": "1",
-							"min-value": "0",
-							"mouse-enabled": "true",
-							"opacity": "1",
-							"origin": "332, 83",
-							"size": "19, 15",
-							"sub-pixmaps": "0",
-							"transparent": "false",
-							"wants-focus": "true",
-							"wheel-inc-value": "0.1"
-						}
-					},
-					"CKickButton": {
-						"attributes": {
-							"bitmap": "Down9",
-							"class": "CKickButton",
-							"control-tag": "SegmentsDown",
-							"default-value": "0",
-							"height-of-one-image": "15",
-							"max-value": "1",
-							"min-value": "0",
-							"mouse-enabled": "true",
-							"opacity": "1",
-							"origin": "332, 132",
-							"size": "19, 15",
-							"sub-pixmaps": "0",
-							"transparent": "false",
-							"wants-focus": "true",
-							"wheel-inc-value": "0.1"
-						}
-					},
 					"CTextLabel": {
 						"attributes": {
 							"back-color": "~ BlackCColor",
@@ -590,7 +484,7 @@
 							"min-value": "0",
 							"mouse-enabled": "true",
 							"opacity": "1",
-							"origin": "482, 10",
+							"origin": "412, 10",
 							"round-rect-radius": "16",
 							"shadow-color": "~ BlackCColor",
 							"size": "120, 30",
@@ -620,14 +514,13 @@
 							"class": "CAnimKnob",
 							"control-tag": "Blur",
 							"default-value": "0.5",
-							"disabled-bitmap": "Red_Button_50",
 							"height-of-one-image": "64",
 							"inverse-bitmap": "false",
 							"max-value": "1",
 							"min-value": "0",
 							"mouse-enabled": "true",
 							"opacity": "1",
-							"origin": "508, 140",
+							"origin": "638, 90",
 							"size": "64, 64",
 							"sub-pixmaps": "101",
 							"transparent": "false",
@@ -652,7 +545,7 @@
 							"min-value": "0",
 							"mouse-enabled": "true",
 							"opacity": "1",
-							"origin": "470, 110",
+							"origin": "640, 20",
 							"round-rect-radius": "16",
 							"shadow-color": "~ BlackCColor",
 							"size": "60, 30",
@@ -663,7 +556,7 @@
 							"style-no-text": "false",
 							"style-round-rect": "true",
 							"style-shadow-text": "true",
-							"text-alignment": "left",
+							"text-alignment": "center",
 							"text-inset": "1, 1",
 							"text-rotation": "0",
 							"text-shadow-offset": "1, 1",
@@ -676,60 +569,23 @@
 					},
 					"CTextLabel": {
 						"attributes": {
-							"back-color": "~ BlackCColor",
+							"back-color": "~ GreyCColor",
 							"background-offset": "0, 0",
 							"class": "CTextLabel",
 							"default-value": "0.5",
 							"font": "~ NormalFont",
 							"font-antialias": "true",
-							"font-color": "panelColor",
-							"frame-color": "~ GreyCColor",
+							"font-color": "~ BlackCColor",
+							"frame-color": "~ BlackCColor",
 							"frame-width": "0",
 							"max-value": "1",
 							"min-value": "0",
 							"mouse-enabled": "true",
 							"opacity": "1",
-							"origin": "502, 60",
+							"origin": "482, 120",
 							"round-rect-radius": "16",
-							"shadow-color": "~ BlackCColor",
-							"size": "80, 30",
-							"style-3D-in": "false",
-							"style-3D-out": "false",
-							"style-no-draw": "false",
-							"style-no-frame": "false",
-							"style-no-text": "false",
-							"style-round-rect": "true",
-							"style-shadow-text": "true",
-							"text-alignment": "center",
-							"text-inset": "1, 1",
-							"text-rotation": "0",
-							"text-shadow-offset": "1, 1",
-							"title": "both",
-							"transparent": "true",
-							"value-precision": "2",
-							"wants-focus": "false",
-							"wheel-inc-value": "0.1"
-						}
-					},
-					"CTextLabel": {
-						"attributes": {
-							"back-color": "~ BlackCColor",
-							"background-offset": "0, 0",
-							"class": "CTextLabel",
-							"default-value": "0.5",
-							"font": "~ NormalFont",
-							"font-antialias": "true",
-							"font-color": "panelColor",
-							"frame-color": "~ GreyCColor",
-							"frame-width": "0",
-							"max-value": "1",
-							"min-value": "0",
-							"mouse-enabled": "true",
-							"opacity": "1",
-							"origin": "472, 40",
-							"round-rect-radius": "16",
-							"shadow-color": "~ BlackCColor",
-							"size": "30, 30",
+							"shadow-color": "~ GreyCColor",
+							"size": "30, 20",
 							"style-3D-in": "false",
 							"style-3D-out": "false",
 							"style-no-draw": "false",
@@ -750,23 +606,23 @@
 					},
 					"CTextLabel": {
 						"attributes": {
-							"back-color": "~ BlackCColor",
+							"back-color": "~ GreyCColor",
 							"background-offset": "0, 0",
 							"class": "CTextLabel",
 							"default-value": "0.5",
 							"font": "~ NormalFont",
 							"font-antialias": "true",
-							"font-color": "panelColor",
-							"frame-color": "~ GreyCColor",
+							"font-color": "~ BlackCColor",
+							"frame-color": "~ BlackCColor",
 							"frame-width": "0",
 							"max-value": "1",
 							"min-value": "0",
 							"mouse-enabled": "true",
 							"opacity": "1",
-							"origin": "572, 40",
+							"origin": "572, 120",
 							"round-rect-radius": "16",
-							"shadow-color": "~ BlackCColor",
-							"size": "30, 30",
+							"shadow-color": "~ GreyCColor",
+							"size": "30, 20",
 							"style-3D-in": "false",
 							"style-3D-out": "false",
 							"style-no-draw": "false",
@@ -787,22 +643,22 @@
 					},
 					"CTextLabel": {
 						"attributes": {
-							"back-color": "~ BlackCColor",
+							"back-color": "~ GreyCColor",
 							"background-offset": "0, 0",
 							"class": "CTextLabel",
 							"default-value": "0.5",
 							"font": "~ NormalFont",
 							"font-antialias": "true",
-							"font-color": "panelColor",
-							"frame-color": "~ GreyCColor",
+							"font-color": "~ BlackCColor",
+							"frame-color": "~ BlackCColor",
 							"frame-width": "0",
 							"max-value": "1",
 							"min-value": "0",
 							"mouse-enabled": "true",
 							"opacity": "1",
-							"origin": "492, 190",
+							"origin": "622, 140",
 							"round-rect-radius": "16",
-							"shadow-color": "~ BlackCColor",
+							"shadow-color": "~ GreyCColor",
 							"size": "30, 30",
 							"style-3D-in": "false",
 							"style-3D-out": "false",
@@ -815,7 +671,7 @@
 							"text-inset": "1, 1",
 							"text-rotation": "0",
 							"text-shadow-offset": "1, 1",
-							"title": "fast",
+							"title": "hard",
 							"transparent": "true",
 							"value-precision": "2",
 							"wants-focus": "false",
@@ -824,22 +680,22 @@
 					},
 					"CTextLabel": {
 						"attributes": {
-							"back-color": "~ BlackCColor",
+							"back-color": "~ GreyCColor",
 							"background-offset": "0, 0",
 							"class": "CTextLabel",
 							"default-value": "0.5",
 							"font": "~ NormalFont",
 							"font-antialias": "true",
-							"font-color": "panelColor",
-							"frame-color": "~ GreyCColor",
+							"font-color": "~ BlackCColor",
+							"frame-color": "~ BlackCColor",
 							"frame-width": "0",
 							"max-value": "1",
 							"min-value": "0",
 							"mouse-enabled": "true",
 							"opacity": "1",
-							"origin": "552, 190",
+							"origin": "682, 140",
 							"round-rect-radius": "16",
-							"shadow-color": "~ BlackCColor",
+							"shadow-color": "~ GreyCColor",
 							"size": "30, 30",
 							"style-3D-in": "false",
 							"style-3D-out": "false",
@@ -852,7 +708,7 @@
 							"text-inset": "1, 1",
 							"text-rotation": "0",
 							"text-shadow-offset": "1, 1",
-							"title": "slow",
+							"title": "soft",
 							"transparent": "true",
 							"value-precision": "2",
 							"wants-focus": "false",
@@ -861,59 +717,22 @@
 					},
 					"CTextLabel": {
 						"attributes": {
-							"back-color": "~ BlackCColor",
+							"back-color": "~ GreyCColor",
 							"background-offset": "0, 0",
 							"class": "CTextLabel",
 							"default-value": "0.5",
 							"font": "~ NormalFont",
 							"font-antialias": "true",
-							"font-color": "panelColor",
-							"frame-color": "~ GreyCColor",
+							"font-color": "~ BlackCColor",
+							"frame-color": "~ BlackCColor",
 							"frame-width": "0",
 							"max-value": "1",
 							"min-value": "0",
 							"mouse-enabled": "true",
 							"opacity": "1",
-							"origin": "522, 110",
+							"origin": "102, 220",
 							"round-rect-radius": "16",
-							"shadow-color": "~ BlackCColor",
-							"size": "30, 30",
-							"style-3D-in": "false",
-							"style-3D-out": "false",
-							"style-no-draw": "false",
-							"style-no-frame": "false",
-							"style-no-text": "false",
-							"style-round-rect": "true",
-							"style-shadow-text": "true",
-							"text-alignment": "center",
-							"text-inset": "1, 1",
-							"text-rotation": "0",
-							"text-shadow-offset": "1, 1",
-							"title": "50%",
-							"transparent": "true",
-							"value-precision": "2",
-							"wants-focus": "false",
-							"wheel-inc-value": "0.1"
-						}
-					},
-					"CTextLabel": {
-						"attributes": {
-							"back-color": "~ BlackCColor",
-							"background-offset": "0, 0",
-							"class": "CTextLabel",
-							"default-value": "0.5",
-							"font": "~ NormalFont",
-							"font-antialias": "true",
-							"font-color": "panelColor",
-							"frame-color": "~ GreyCColor",
-							"frame-width": "0",
-							"max-value": "1",
-							"min-value": "0",
-							"mouse-enabled": "true",
-							"opacity": "1",
-							"origin": "22, 220",
-							"round-rect-radius": "16",
-							"shadow-color": "~ BlackCColor",
+							"shadow-color": "~ GreyCColor",
 							"size": "30, 20",
 							"style-3D-in": "false",
 							"style-3D-out": "false",
@@ -937,7 +756,7 @@
 						"attributes": {
 							"angle-range": "270",
 							"angle-start": "135",
-							"bitmap": "led_3_state_red",
+							"bitmap": "led_green_dual_continuous_reverse_wide",
 							"class": "CAnimKnob",
 							"control-tag": "Stereo",
 							"default-value": "0.5",
@@ -947,9 +766,9 @@
 							"min-value": "0",
 							"mouse-enabled": "true",
 							"opacity": "1",
-							"origin": "505, 44",
-							"size": "69, 23",
-							"sub-pixmaps": "3",
+							"origin": "493, 140",
+							"size": "100, 23",
+							"sub-pixmaps": "16",
 							"transparent": "false",
 							"value-inset": "0",
 							"wants-focus": "false",
@@ -957,83 +776,114 @@
 							"zoom-factor": "1.5"
 						}
 					},
-					"CControl": {
+					"COnOffButton": {
 						"attributes": {
-							"bitmap": "GreenLED",
-							"class": "CControl",
-							"default-value": "0.5",
+							"autosize": "left right bottom ",
+							"bitmap": "Dual_LED_onoff_small",
+							"class": "COnOffButton",
+							"control-tag": "Bypass",
+							"default-value": "0",
 							"max-value": "1",
 							"min-value": "0",
 							"mouse-enabled": "true",
 							"opacity": "1",
-							"origin": "390, 90",
-							"size": "60, 60",
+							"origin": "30, 40",
+							"size": "23, 23",
 							"transparent": "false",
-							"wants-focus": "false",
+							"wants-focus": "true",
 							"wheel-inc-value": "0.1"
 						}
 					},
-					"CControl": {
+					"CPulseButton": {
 						"attributes": {
-							"bitmap": "GreenLED_off",
-							"class": "CControl",
-							"default-value": "0.5",
+							"bitmap": "Up5",
+							"class": "CPulseButton",
+							"control-tag": "SegmentsUp",
+							"default-value": "0",
+							"disabled-bitmap": "Up5",
 							"max-value": "1",
 							"min-value": "0",
 							"mouse-enabled": "true",
 							"opacity": "1",
-							"origin": "390, 130",
-							"size": "60, 70",
+							"origin": "255, 75",
+							"size": "40, 23",
 							"transparent": "false",
-							"wants-focus": "false",
+							"wants-focus": "true",
 							"wheel-inc-value": "0.1"
 						}
 					},
-					"CControl": {
+					"CPulseButton": {
 						"attributes": {
-							"class": "CControl",
-							"default-value": "0.5",
+							"bitmap": "Down5",
+							"class": "CPulseButton",
+							"control-tag": "SegmentsDown",
+							"default-value": "0",
+							"disabled-bitmap": "Down5",
 							"max-value": "1",
 							"min-value": "0",
 							"mouse-enabled": "true",
 							"opacity": "1",
-							"origin": "400, 190",
-							"size": "40, 40",
+							"origin": "255, 153",
+							"size": "40, 23",
 							"transparent": "false",
-							"wants-focus": "false",
+							"wants-focus": "true",
 							"wheel-inc-value": "0.1"
 						}
 					},
-					"CControl": {
+					"CAnimKnob": {
 						"attributes": {
-							"bitmap": "RedLED",
-							"class": "CControl",
+							"angle-range": "270",
+							"angle-start": "135",
+							"bitmap": "Carbon",
+							"class": "CAnimKnob",
+							"control-tag": "Stereo",
 							"default-value": "0.5",
+							"height-of-one-image": "64",
+							"inverse-bitmap": "false",
 							"max-value": "1",
 							"min-value": "0",
 							"mouse-enabled": "true",
 							"opacity": "1",
-							"origin": "620, 70",
-							"size": "70, 60",
+							"origin": "510, 90",
+							"size": "64, 64",
+							"sub-pixmaps": "101",
 							"transparent": "false",
+							"value-inset": "0",
 							"wants-focus": "false",
-							"wheel-inc-value": "0.1"
+							"wheel-inc-value": "0.1",
+							"zoom-factor": "1.5"
 						}
 					},
-					"CControl": {
+					"CSlider": {
 						"attributes": {
-							"bitmap": "RedLED_off",
-							"class": "CControl",
-							"default-value": "0.5",
-							"max-value": "1",
-							"min-value": "0",
+							"bitmap-offset": "0, 0",
+							"class": "CSlider",
+							"control-tag": "Segments",
+							"default-value": "32",
+							"draw-back": "false",
+							"draw-back-color": "~ BlackCColor",
+							"draw-frame": "false",
+							"draw-frame-color": "~ GreyCColor",
+							"draw-value": "false",
+							"draw-value-color": "~ WhiteCColor",
+							"draw-value-from-center": "false",
+							"draw-value-inverted": "false",
+							"frame-width": "1",
+							"handle-bitmap": "Slider_Knob_new",
+							"handle-offset": "-13, 0",
+							"max-value": "32",
+							"min-value": "4",
+							"mode": "use global",
 							"mouse-enabled": "true",
 							"opacity": "1",
-							"origin": "620, 100",
-							"size": "70, 80",
+							"orientation": "vertical",
+							"origin": "258, 97",
+							"reverse-orientation": "false",
+							"size": "35, 58",
 							"transparent": "false",
-							"wants-focus": "false",
-							"wheel-inc-value": "0.1"
+							"wants-focus": "true",
+							"wheel-inc-value": "0.1",
+							"zoom-factor": "10"
 						}
 					}
 				}

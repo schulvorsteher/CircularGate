@@ -122,36 +122,45 @@ namespace csse {
 	//	return (int)(sequence * max);
 	//}
 
-	std::vector<int> Sequence::sequenceToVector(int64 iSequence, int iSegs)
+	std::vector<int> Sequence::sequenceToVector(uint64 iSequence, int iSegs)
 	{
 		std::vector<int> selection;
-		int64 val = iSequence;
+		uint64 val = iSequence;
 		for (int i = 0; i < iSegs; i++)
 		{
-			int64 v = val % 2;
+			uint64 v = val % 2;
+			//std::cout << val << " ";
 			selection.push_back(v);
 			val -= v;
 			val /= 2;
 		}
+		//std::cout << std::endl;
 		return selection;
 	}
 
-	float Sequence::vectorToSequence(std::vector<int> selection)
+	double Sequence::vectorToSequence(std::vector<int> selection)
 	{
-		int64 iSequence = 0;
+		uint64 iSequence = 0;
 		for (int i = 0; i < selection.size(); i++)
 		{
 			if (selection[i] == 1)
+			{
 				iSequence += (int64)pow(2, i);
+				//std::cout << iSequence << " ";
+			}
 		}
-		float fSequence = iSequence / pow(10, ceil((float)selection.size() / 3));
+		//std::cout << std::endl;
+		//float fSequence = iSequence / pow(10, ceil((float)selection.size() / 3));
+		double fSequence = iSequence / pow(10, 12);// ceil((float)selection.size() / 3));
+		//std::cout << fSequence << std::endl;
 		return fSequence;
 	}
 
-	int64 Sequence::sequenceToInt(float val, int vectorsize)
+	uint64 Sequence::sequenceToInt(double val, int vectorsize)
 	{
-		int64 factor = pow(10, std::ceil((float)vectorsize / 3));
-		int64 retval = round(val * factor);
+		//int64 factor = pow(10, std::ceil((float)vectorsize / 3));
+		uint64 factor = pow(10, 12); //std::ceil((float)vectorsize / 3));
+		uint64 retval = round(val * factor);
 		return retval;
 	}
 

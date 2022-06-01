@@ -8,15 +8,16 @@ namespace csse {
 
 	//-----------------------------------------------------------------------------
 	// CSegmentsButton Declaration
-	//! @brief another segment knob control 
+	//! @brief a segment knob control 
 	/// @ingroup controls
 	//-----------------------------------------------------------------------------
-	class CSegmentsButton : public CControl, public IMultiBitmapControl
+	class CSegmentsButton : public CKnobBase, public IMultiBitmapControl
 	{
 	public:
 		CSegmentsButton(const CRect& size, IControlListener* listener, int32_t tag, CBitmap* background, const CPoint& offset = CPoint(0, 0));
-		CSegmentsButton(const CRect& size, IControlListener* listener, int32_t tag, CCoord heightOfOneImage, CBitmap* background, const CPoint& offset = CPoint(0, 0));
-		CSegmentsButton(const CSegmentsButton& button);
+		CSegmentsButton(const CRect& size, IControlListener* listener, int32_t tag, int32_t subPixmaps, CCoord heightOfOneImage, CBitmap* background, const CPoint& offset = CPoint(0, 0));
+		CSegmentsButton(const CSegmentsButton& knob);
+
 
 		// overrides
 		void draw(CDrawContext* pContext) override;
@@ -29,17 +30,25 @@ namespace csse {
 		int32_t onKeyUp(VstKeyCode& keyCode) override;
 
 		bool sizeToFit() override;
+		int getButton(CPoint& where);
 
 		void setNumSubPixmaps(int32_t numSubPixmaps) override { IMultiBitmapControl::setNumSubPixmaps(numSubPixmaps); invalid(); }
 
-		CLASS_METHODS(CSegmentsButton, CControl)
+
+		CLASS_METHODS(CSegmentsButton, CKnobBase)
 	protected:
 		~CSegmentsButton() noexcept override = default;
-		//map;
-		CPoint offset;
+		bool	bInverseBitmap;
+
+		int buildSelection = 0;  // 1: add to selection mode , -1 remove from selection mode
+		float mouseStartValue;
 
 		int segs = 4;
+		int segsold = 0;
 		int currSeg = 0;
+		int buttonState = 0;
+
 	};
+
 
 } // csse

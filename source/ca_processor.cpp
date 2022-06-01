@@ -74,9 +74,9 @@ tresult PLUGIN_API CircularGateProcessor::initialize (FUnknown* context)
 	mBypass = false;
 
 
-	freopen("/output.log", "w", stdout);
-	freopen("/outerr.log", "w", stderr);
-	std::cout << std::fixed << std::setprecision(40);
+	//freopen("/output.log", "w", stdout);
+	//freopen("/outerr.log", "w", stderr);
+	//std::cout << std::fixed << std::setprecision(12);
 
 	return kResultOk;
 }
@@ -132,8 +132,8 @@ tresult PLUGIN_API CircularGateProcessor::process (Vst::ProcessData& data)
 
 					case kSequenceId:
 						fSequence = (double)value;
-						std::cout << "ca_processor 135: fSequence: ";
-						std::cout << fSequence << std::endl;
+						//std::cout << "ca_processor 135: fSequence: ";
+						//std::cout << fSequence << std::endl;
 						break;
 
 					case kSpeedId:
@@ -256,21 +256,27 @@ tresult PLUGIN_API CircularGateProcessor::process (Vst::ProcessData& data)
 		if (fSegs != fSegsOld) 
 		{
 			iSegs = Sequence::denormalizeSegments(fSegs);
-			std::cout << "ca_processor 259: iSegs:     ";
-			std::cout << iSegs << std::endl;
-			//sendNofSegments(fSegs);
+			//std::cout << "ca_processor 259: iSegs:     ";
+			//std::cout << iSegs << std::endl;
 		}
 
+		//std::cout << "ca_processor 263: iSegs:  (" << fSegs << ")";
+		//std::cout << iSegs << std::endl;
+
+		//std::cout << "ca_processor 266: fSequence: ";
+		//std::cout << fSequence << std::endl;
 
 		iSequence = Sequence::sequenceToInt(fSequence, iSegs);
-		std::cout << "ca_processor 266: iSequence: ";
-		std::cout << iSequence << std::endl;
+		//std::cout << "ca_processor 270: iSequence: ";
+		//std::cout << iSequence << std::endl;
 
 		vSequence = Sequence::sequenceToVector(iSequence, iSegs);
-		std::cout << "ca_processor 271: vSequence: ";
-		for (auto s : vSequence)
-			std::cout << s << " ";
-		std::cout << "(" << vSequence.size() << ")" << std::endl;
+		//std::cout << "ca_process 274: ";
+		//for (int s : vSequence)
+		//	if (s == 0)std::cout << ".";
+		//	else std::cout << "X";
+		//	
+		//std::cout << "(" << vSequence.size() << ")" << std::endl;
 
 		fSegsOld = fSegs;
 		fSequenceOld = fSequence;
@@ -319,24 +325,39 @@ tresult PLUGIN_API CircularGateProcessor::process (Vst::ProcessData& data)
 				float y = Sequence::getValue(allSamples, framesPerBeat, vSequence, fSpeedDenormalized, reset_sequence, fBlur, /*out*/ displayed_segment);
 				reset_sequence = false;
 
-				//if (ch == 0)
-				//	tmp *= y;// *fStereo + (1 - y) * (1 - fStereo);
-				//else
-				//	tmp *= (1 - y) * (fStereo)+y * (1 - fStereo);
-				if (fStereo <.5f)
+				if (fStereo < .49f)
 				{
-					tmp *= ch == 0 ? y : (1 - y);
+					if (ch == 0)
+						tmp *= y;
+					else
+						tmp *= (1 - y) * (1 - 2 * fStereo) + 2 * fStereo * y;
 				}
-				else if (fStereo < 1.0f)
+				else if (fStereo < .51f)
 				{
 					tmp *= y; // for all channels
 				}
 				else // fStereo == 1.0f
 				{
-					tmp *= ch == 0 ? (1 - y) : y;
+					if (ch == 0)
+						tmp *= y * 2 * (.5f - fStereo / 2) + (2 * fStereo * (1 - y) / 2);
+					else
+						tmp *= y;
 				}
 
-				if (ch == 0) {
+				//if (fStereo <.5f)
+				//{
+				//	tmp *= ch == 0 ? y : (1 - y);
+				//}
+				//else if (fStereo < 1.0f)
+				//{
+				//	tmp *= y; // for all channels
+				//}
+				//else // fStereo == 1.0f
+				//{
+				//	tmp *= ch == 0 ? (1 - y) : y;
+				//}
+
+				//if (ch == 0) {
 					if (framesPerBeat > 0 && allSamples % framesPerBeat == 0)
 					{
 						clockMessage++;
@@ -352,22 +373,22 @@ tresult PLUGIN_API CircularGateProcessor::process (Vst::ProcessData& data)
 							fCurrSegment = displayed_segment;
 							//std::cout << "prc_bar:" << bar << std::endl;
 
-							fClockMessage = 100 * fBarInfo + displayed_segment;// clockMessage;
-							if (outParamChanges && fClockMessageOld != fClockMessage)
-							{
-								int32 index = 0;
-								Steinberg::Vst::IParamValueQueue* paramQueue = outParamChanges->addParameterData(kClockId, index);
-								if (paramQueue)
-								{
-									int32 index2 = 0;
-									int mess = (int)fClockMessage;// % 100;
-									paramQueue->addPoint(0, (float)mess / 10000, index2);
-								}
-							}
-							fClockMessageOld = fClockMessage;
+							//fClockMessage = 100 * fBarInfo + displayed_segment;// clockMessage;
+							//if (outParamChanges && fClockMessageOld != fClockMessage)
+							//{
+							//	int32 index = 0;
+							//	Steinberg::Vst::IParamValueQueue* paramQueue = outParamChanges->addParameterData(kClockId, index);
+							//	if (paramQueue)
+							//	{
+							//		int32 index2 = 0;
+							//		int mess = (int)fClockMessage;// % 100;
+							//		paramQueue->addPoint(0, (float)mess / 10000, index2);
+							//	}
+							//}
+							//fClockMessageOld = fClockMessage;
 						}
 					}
-				}
+				//}
 				allSamples++;
 
 				*pOut = tmp;
@@ -422,13 +443,17 @@ tresult PLUGIN_API CircularGateProcessor::setState (IBStream* state)
 	IBStreamer streamer (state, kLittleEndian);
 
 
+	int32 savedBypass = 0;
+	if (streamer.readInt32(savedBypass) == false)
+	{
+		// could be an old version, continue))
+	}
+	mBypass = savedBypass > 0;
+
 	float fval;
 	if (streamer.readFloat(fval) == false)
 		return kResultFalse;
 	fSegs = fval;
-	if (streamer.readFloat(fval) == false)
-		return kResultFalse;
-	fSequence = fval;
 	if (streamer.readFloat(fval) == false)
 		return kResultFalse;
 	fSpeed = fval;
@@ -439,12 +464,11 @@ tresult PLUGIN_API CircularGateProcessor::setState (IBStream* state)
 		return kResultFalse;
 	fBlur = fval;
 
-	int32 savedBypass = 0;
-	if (streamer.readInt32(savedBypass) == false)
-	{
-		// could be an old version, continue))
-	}
-	mBypass = savedBypass > 0;
+	double dval;
+	if (streamer.readDouble(dval) == false)
+		return kResultFalse;
+	fSequence = fval;
+
 
 	return kResultOk;
 }
@@ -455,13 +479,15 @@ tresult PLUGIN_API CircularGateProcessor::getState (IBStream* state)
 	// here we need to save the model
 	IBStreamer streamer (state, kLittleEndian);
 
+	streamer.writeInt32(mBypass ? 1 : 0);
+
 	streamer.writeFloat(fSegs);
-	streamer.writeFloat(fSequence);
 	streamer.writeFloat(fSpeed);
 	streamer.writeFloat(fStereo);
 	streamer.writeFloat(fBlur);
 
-	streamer.writeInt32(mBypass ? 1 : 0);
+	streamer.writeDouble(fSequence);
+
 	
 	return kResultOk;
 }

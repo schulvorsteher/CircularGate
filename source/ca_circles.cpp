@@ -112,12 +112,20 @@ namespace csse {
 		{
 			segControl = findControlForTag(getFrame(), kSegsId, true);
 		}
-		if (segControl )
+		if (segControl)
 		{
 			segValueChanged(segControl);
 			adjustSelection(getSegs());
+			//if (tag == 104)
+			//{
+			//	std::cout << "ca_circles 122: segs:" << segs << ") ";;
+			//	std::cout << segs << std::endl;
+			//	std::cout << "ca_circles 124: ";
+			//	for (auto s : selection)
+			//		std::cout << s << " ";
+			//	std::cout << "(" << selection.size() << ")" << std::endl;
+			//}
 		}
-
 		if (getDrawBackground())
 		{
 			CPoint where(0, 0);
@@ -156,6 +164,8 @@ namespace csse {
 		double R = w1 / 2;
 		double r = R / (1 + 1 / sin(Constants::double_pi / 2 / getSegs()));
 
+		if (r > 30) r = 30;
+
 		if (tag == kCurrSegmentId)
 		{
 			float v = getValueNormalized();
@@ -176,6 +186,7 @@ namespace csse {
 				drawSegAction(seg, i);
 			}
 			setDirty(false);
+
 		}
 
 	}
@@ -196,7 +207,7 @@ namespace csse {
 			CPoint center = rect.getCenter();
 			int radius = rect.getWidth() / 2;
 			CGraphicsPath* drawPath = context->createGraphicsPath();
-			drawPath->addEllipse(rect);// .extend(CPoint(5, 5)));
+			drawPath->addEllipse(rect);// .extend(CPoint(-3, -3)));
 
 			CColor c1(100, 100, 00, 100);
 			CColor c2(250, 250, 0, 155);
@@ -206,6 +217,10 @@ namespace csse {
 				CPoint(0,0), false, nullptr);
 			gradient->forget();
 			drawPath->forget();
+			
+			//context->setFrameColor(CColor(250, 250, 250, 255)); // black borders
+			//context->setLineWidth(1);
+			//context->drawEllipse(rect, kDrawStroked);
 		}
 		else
 		{
@@ -287,24 +302,28 @@ namespace csse {
 	{
 		if (!(buttons & kLButton))
 			return kMouseEventNotHandled;
-
-		int i = getSeg(where);
-		if (i >= 0)
-		{
-			adjustSelection(getSegs());
-			if (selection.size() > 0 && selection[i] == 1)
+		//if (tag == 104) {
+			int i = getSeg(where);
+			if (i >= 0)
 			{
-				buildSelection = -1; // remove from selection
-			}
-			else
-			{
-				buildSelection = 1; // add to selection 
-			}
+				adjustSelection(getSegs());
+				if (selection.size() > 0 && selection[i] == 1)
+				{
+					buildSelection = -1; // remove from selection
+				}
+				else
+				{
+					buildSelection = 1; // add to selection 
+				}
 
-			mouseStartValue = value;
-			beginEdit();
-		}
-		return onMouseMoved(where, buttons);
+				mouseStartValue = value;
+				beginEdit();
+			}
+			return onMouseMoved(where, buttons);
+		//}
+		//else {
+		//	return kMouseEventNotHandled;
+		//}
 	}
 
 	// end the selection process upon mouse up 
@@ -403,8 +422,13 @@ namespace csse {
 			val = 0.f;
 		setValue(getRange() * val + getMin());
 
-		int64 iSequence = Sequence::sequenceToInt(val, getSegs());
-		selection = Sequence::sequenceToVector(iSequence, getSegs());
+		//int64 iSequence = Sequence::sequenceToInt(val, getSegs());
+		//selection = Sequence::sequenceToVector(iSequence, getSegs());
+		//std::cout << "ca_circles 419: selection: ";
+		//for (auto s : selection)
+		//	std::cout << s << " ";
+		//std::cout << "(" << selection.size() << ")" << std::endl;
+
 	}
 
 	//------------------------------------------------------------------------
