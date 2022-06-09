@@ -200,7 +200,7 @@ namespace csse {
 			else if (where.y - t1 > 2 * h1 / 3)
 				bs = 2;
 
-			std::cout << "buttonstate:" << bs<< std::endl;
+			//std::cout << "buttonstate:" << bs<< std::endl;
 
 
 		}

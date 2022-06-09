@@ -2,19 +2,18 @@
 
 enum
 {
-	kBypassId =99,
-	kSpeedId = 100,
-	kSegsId = 101,
-	kSegsUpId = 102,
-	kSegsDownId = 103,
+	kSegsId = 100,
+	kSpeedId = 101,
+	kStereoId = 102,
+	kBlurId = 103,
 	kSequenceId = 104,
-	kClockId = 105,
-	kCurrSegmentId = 106,
-	kStereoId = 107,
-	kBlurId = 108
+	kBypassId =200,
+	kSegsUpId = 201,
+	kSegsDownId = 202,
+	kClockId = 300,
+	kCurrSegmentId = 301
 };
 
 #define default_stereo 0.5
-#define segs_max 32
+#define segs_max 16
 #define segs_min 4
-#define segs_default 16

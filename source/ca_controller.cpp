@@ -15,8 +15,6 @@
 #include "vstgui/vstgui_uidescription.h"
 #include "vstgui/uidescription/detail/uiviewcreatorattributes.h"
 #include "pluginterfaces/vst/ivsteditcontroller.h"
-#include <iostream>
-#include <cstdio>
 
 using namespace Steinberg;
 
@@ -36,46 +34,31 @@ tresult PLUGIN_API CircularGateController::initialize (FUnknown* context)
 		return result;
 	}
 
-	// Bypass parameter
-	parameters.addParameter(
-		STR16("Bypass"), nullptr, 1, 0, Vst::ParameterInfo::kCanAutomate | Vst::ParameterInfo::kIsBypass, kBypassId);
-
 	// ////////////////// IN Parameters ///////////////////////////////
 	setKnobMode(Vst::kLinearMode);
 
 	parameters.addParameter(
 		new Vst::mda::ScaledParameter(
-			STR16("Segments"), STR16("No"), segs_default, 1, Vst::ParameterInfo::kCanAutomate, kSegsId,segs_min, segs_max, true));
+			STR16("Segments"), STR16("No"), segs_max, 1, Vst::ParameterInfo::kCanAutomate, kSegsId,segs_min, segs_max, true));
 	
-
 	// speed parameter
 	parameters.addParameter(STR16("Speed"), nullptr, 9, 0, Vst::ParameterInfo::kCanAutomate, kSpeedId);
 
 	// Stereo parameter
-	parameters.addParameter(
-		new Vst::mda::ScaledParameter(
-			STR16("Stereo"), STR16("%"), 0, .5f, Vst::ParameterInfo::kCanAutomate, kStereoId, 0, 100, true));
+	parameters.addParameter(STR16("Stereo"), NULL, 2, .5f, Vst::ParameterInfo::kCanAutomate, kStereoId);
 
 	// Blur parameter
-	parameters.addParameter(STR16("Blur"), STR16("%"), 0, .5f, Vst::ParameterInfo::kCanAutomate, kBlurId);
+	parameters.addParameter(STR16("Shape"), STR16("%"), 0, .5f, Vst::ParameterInfo::kCanAutomate, kBlurId);
 
 	// THE Sequence
 	parameters.addParameter(
-		STR16("Sequence"), STR16("Sequence"), 0, 0, Vst::ParameterInfo::kCanAutomate, kSequenceId);
+		STR16("Sequence"), STR16("Sequence"), 0, 0, Vst::ParameterInfo::kCanAutomate, kSequenceId);// , 0, 4294967295));
+			//new Vst::mda::ScaledParameter (
 
-
-	////////////////////////// OUT parameters ////////////////////////
-	int32 stepCount = 0;
-	Vst::ParamValue defaultVal = 0;
-	int32 flags = Vst::ParameterInfo::kIsReadOnly;
-
-	// Segment OUT parameter
-	int32 tag = kClockId;
-	parameters.addParameter(STR16("ClockMessage"), nullptr, stepCount, defaultVal, flags, tag);
-
-	// current segment OUT parameter
-	tag = kCurrSegmentId;
-	parameters.addParameter(STR16("CurrSegment"), nullptr, stepCount, defaultVal, flags, tag);
+    ///////////////////////// SWITCHES //////////////////////////////////
+	// Bypass parameter
+	parameters.addParameter(
+		STR16("Bypass"), nullptr, 1, 0, Vst::ParameterInfo::kCanAutomate | Vst::ParameterInfo::kIsBypass, kBypassId);
 
 	// Segments Up
 	parameters.addParameter(
@@ -84,6 +67,18 @@ tresult PLUGIN_API CircularGateController::initialize (FUnknown* context)
 	// Segments Down
 	parameters.addParameter(
 		STR16("SegmentsDown"), nullptr, 1, 0, Vst::ParameterInfo::kNoFlags, kSegsDownId);
+	////////////////////////// OUT parameters ////////////////////////
+	int32 stepCount = 0;
+	Vst::ParamValue defaultVal = 0;
+	int32 flags = Vst::ParameterInfo::kIsReadOnly;
+	
+	//// Segment OUT parameter
+	//int32 tag = kClockId;
+	//parameters.addParameter(STR16("ClockMessage"), nullptr, stepCount, defaultVal, flags, tag);
+	
+	// current segment OUT parameter
+	int32 tag = kCurrSegmentId;
+	parameters.addParameter(STR16("CurrSegment"), nullptr, stepCount, defaultVal, flags, tag);
 
 	return result;
 }
@@ -106,13 +101,6 @@ tresult PLUGIN_API CircularGateController::setComponentState (IBStream* state)
 
 	IBStreamer streamer(state, kLittleEndian);
 
-	int32 bypassState = 0;
-	if (streamer.readInt32(bypassState) == false)
-	{
-		// could be an old version, continue
-	}
-	setParamNormalized(kBypassId, bypassState ? 1 : 0);
-
 	float fval;
 	if (streamer.readFloat(fval) == false)
 		return kResultFalse;
@@ -128,11 +116,16 @@ tresult PLUGIN_API CircularGateController::setComponentState (IBStream* state)
 	setParamNormalized(kBlurId, fval);
 
 	double dval;
-	if (streamer.readFloat(fval) == false)
+	if (streamer.readDouble(dval) == false)
 		return kResultFalse;
-	setParamNormalized(kSequenceId, fval);
+	setParamNormalized(kSequenceId, dval);
 
-
+	int32 bypassState = 0;
+	if (streamer.readInt32(bypassState) == false)
+	{
+		// could be an old version, continue
+	}
+	setParamNormalized(kBypassId, bypassState ? 1 : 0);
 
 	return kResultOk;
 }
@@ -185,8 +178,8 @@ tresult PLUGIN_API CircularGateController::setParamNormalized (Vst::ParamID tag,
 	if ((tag == kSegsDownId || tag == kSegsUpId) && value == 1.f)
 	{
 		float fsegs = getParamNormalized(kSegsId);
-		float step = .03125f;// static_cast<float>(1) / (segs_max);// -segs_min - 1);
-		float fmin = 1 * step;
+		float step = static_cast<float>(1) / (segs_max - segs_min + 1);
+		float fmin = 1* step;
 		if (fsegs < fmin)
 		{
 			fsegs = fmin;
@@ -198,14 +191,7 @@ tresult PLUGIN_API CircularGateController::setParamNormalized (Vst::ParamID tag,
 
 	}
 	else
-		if (tag == kSequenceId)
-		{
-//			std::cout << "ca_controller 195:    value: " << value << std::endl;
-			result = EditControllerEx1::setParamNormalized(tag, value);
-		}
-		else
-			result = EditControllerEx1::setParamNormalized(tag, value);
-
+		result = EditControllerEx1::setParamNormalized (tag, value);
 
 	return result;
 }
@@ -226,26 +212,26 @@ tresult PLUGIN_API CircularGateController::getParamValueByString (Vst::ParamID t
 	return EditControllerEx1::getParamValueByString (tag, string, valueNormalized);
 }
 
-tresult PLUGIN_API CircularGateController::notify(Vst::IMessage* message) {
-	if (!message) { return kInvalidArgument; }
-	if (!strcmp(message->getMessageID(), "ClockMessage")) {
-		const void* dataOut;
-		double clockMessage;
-		if (message->getAttributes()->getFloat("clock", clockMessage) == kResultOk) {
-			int i = 1;
-		}
-		return kResultOk;
-	}
-	if (!strcmp(message->getMessageID(), "SegmentMessage")) {
-		const void* dataOut;
-		double segmentsMessage;
-		if (message->getAttributes()->getFloat("Segments", segmentsMessage) == kResultOk) {
-			int i = 1;
-		}
-		return kResultOk;
-	}
-	return EditControllerEx1::notify(message);
-}
+//tresult PLUGIN_API CircularGateController::notify(Vst::IMessage* message) {
+//	if (!message) { return kInvalidArgument; }
+//	if (!strcmp(message->getMessageID(), "ClockMessage")) {
+//		const void* dataOut;
+//		double clockMessage;
+//		if (message->getAttributes()->getFloat("clock", clockMessage) == kResultOk) {
+//			int i = 1;
+//		}
+//		return kResultOk;
+//	}
+//	if (!strcmp(message->getMessageID(), "SegmentMessage")) {
+//		const void* dataOut;
+//		double segmentsMessage;
+//		if (message->getAttributes()->getFloat("Segments", segmentsMessage) == kResultOk) {
+//			int i = 1;
+//		}
+//		return kResultOk;
+//	}
+//	return EditControllerEx1::notify(message);
+//}
 
 //------------------------------------------------------------------------
 } // namespace csse

@@ -115,8 +115,8 @@ namespace csse {
 		if (segControl)
 		{
 			segValueChanged(segControl);
-			adjustSelection(getSegs());
-			//if (tag == 104)
+			if (tag == 104)
+				adjustSelection(getSegs());
 			//{
 			//	std::cout << "ca_circles 122: segs:" << segs << ") ";;
 			//	std::cout << segs << std::endl;
@@ -257,8 +257,8 @@ namespace csse {
 		context->fillRadialGradient(drawPath, *gradient, center, radius,
 			CPoint(0, 0), false, nullptr);
 	
-		//context->setFontColor(cFont);
-		//context->drawString((UTF8String)std::to_string(sel + 1), rect, kCenterText, true);
+		context->setFontColor(cFont);
+		context->drawString((UTF8String)std::to_string(sel + 1), rect, kCenterText, true);
 	}
 
 
@@ -422,8 +422,8 @@ namespace csse {
 			val = 0.f;
 		setValue(getRange() * val + getMin());
 
-		//int64 iSequence = Sequence::sequenceToInt(val, getSegs());
-		//selection = Sequence::sequenceToVector(iSequence, getSegs());
+		int64 iSequence = Sequence::sequenceToInt(val, getSegs());
+		selection = Sequence::sequenceToVector(iSequence, getSegs());
 		//std::cout << "ca_circles 419: selection: ";
 		//for (auto s : selection)
 		//	std::cout << s << " ";

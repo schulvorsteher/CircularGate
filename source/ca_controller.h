@@ -45,7 +45,7 @@ public:
                                                          Steinberg::Vst::TChar* string,
                                                          Steinberg::Vst::ParamValue& valueNormalized) SMTG_OVERRIDE;
 
-	Steinberg::tresult PLUGIN_API notify(Steinberg::Vst::IMessage* message);
+	//Steinberg::tresult PLUGIN_API notify(Steinberg::Vst::IMessage* message);
 
  	//---Interface---------
 	DEFINE_INTERFACES

@@ -107,8 +107,9 @@ namespace csse {
 
 	int Sequence::denormalizeSegments(float segs)
 	{
-		//return std::min(16, 4 + (int)((segs * (12 + 1))));
-		return std::min(segs_max, segs_min + (int)((segs * (segs_max - segs_min + 1))));
+		int retval = segs_min + segs * (segs_max - segs_min);;
+		//std::cout << "Segs:"<<segs << " > "<< retval << std::endl;
+		return retval;
 	}
 
 	float Sequence::normalizeSegments(int segs)
@@ -150,16 +151,16 @@ namespace csse {
 			}
 		}
 		//std::cout << std::endl;
-		//float fSequence = iSequence / pow(10, ceil((float)selection.size() / 3));
-		double fSequence = iSequence / pow(10, 12);// ceil((float)selection.size() / 3));
+		//double fSequence = iSequence / pow(10, ceil((float)selection.size() / 3));
+		double fSequence = iSequence / pow(10, 5);// ceil((float)selection.size() / 3));
 		//std::cout << fSequence << std::endl;
 		return fSequence;
 	}
 
 	uint64 Sequence::sequenceToInt(double val, int vectorsize)
 	{
-		//int64 factor = pow(10, std::ceil((float)vectorsize / 3));
-		uint64 factor = pow(10, 12); //std::ceil((float)vectorsize / 3));
+		//uint64 factor = pow(10, std::ceil((float)vectorsize / 3));
+		uint64 factor = pow(10, 5); //std::ceil((float)vectorsize / 3));
 		uint64 retval = round(val * factor);
 		return retval;
 	}
